@@ -32,88 +32,107 @@ USE ieee.std_logic_1164.ALL;
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
  
-ENTITY ALU_param_TB IS
-END ALU_param_TB;
+entity ALU_param_TB is
+end ALU_param_TB;
  
-ARCHITECTURE behavior OF ALU_param_TB IS 
- 
-    -- Component Declaration for the Unit Under Test (UUT)
-	 
-	 Constant M : natural := 16;
-    COMPONENT ALU_param
-	 GENERIC ( N : natural);
-    PORT(
-         A : IN  std_logic_vector(M-1 downto 0);
-         B : IN  std_logic_vector(M-1 downto 0);
-         X : IN  std_logic_vector(M-1 downto 0);
-         ctrl : IN  std_logic_vector(3 downto 0);
-         O : OUT  std_logic_vector(M-1 downto 0);
-         flags : OUT  std_logic_vector(7 downto 0)
-        );
-    END COMPONENT;
+architecture behavior of ALU_param_TB is 
+
+	-- constants
+	constant M : NATURAL := 16;
+	constant wait_time : TIME := 10 ns;
+	
+	-- Component Declaration for the Unit Under Test (UUT)
+	component ALU_param
+		generic 
+		( 
+			N : NATURAL
+		);
+		port
+		(
+			A : IN  STD_LOGIC_VECTOR(M-1 downto 0);
+			B : IN  STD_LOGIC_VECTOR(M-1 downto 0);
+			X : IN  STD_LOGIC_VECTOR(M-1 downto 0);
+			ctrl : IN  STD_LOGIC_VECTOR(3 downto 0);
+			O : OUT  STD_LOGIC_VECTOR(M-1 downto 0);
+			flags : OUT  STD_LOGIC_VECTOR(7 downto 0)
+		);
+	end component;
     
 
    --Inputs
-   signal A : std_logic_vector(M-1 downto 0) := (others => '0');
-   signal B : std_logic_vector(M-1 downto 0) := (others => '0');
-   signal X : std_logic_vector(M-1 downto 0) := (others => '0');
-   signal ctrl : std_logic_vector(3 downto 0) := (others => '0');
+   signal A : STD_LOGIC_VECTOR(M-1 downto 0) := (others => '0');
+   signal B : STD_LOGIC_VECTOR(M-1 downto 0) := (others => '0');
+   signal X : STD_LOGIC_VECTOR(M-1 downto 0) := (others => '0');
+   signal ctrl : STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
 
  	--Outputs
-   signal O : std_logic_vector(M-1 downto 0);
-   signal flags : std_logic_vector(7 downto 0);
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
- 
- type test_vector is record
-   ctrl : std_logic_vector(3 downto  0);
-	A : std_logic_vector(M-1 downto 0);
-	B : std_logic_vector(M-1 downto  0);
-	X : std_logic_vector(M-1 downto  0);
-	O : std_logic_vector(M-1 downto 0);
-	flags : std_logic_vector(7 downto 0);
-	
- end record;
- 
- type test_vector_array is array
-	(natural range <>) of test_vector;
+   signal O : STD_LOGIC_VECTOR(M-1 downto 0);
+   signal flags : STD_LOGIC_VECTOR(7 downto 0);
 
- constant test_vectors : test_vector_array := (
  
- -- CTRL,  A ,         B ,         X ,         O ,         FLAGS
- ("0000", "00000000", "00000000", "00000000", "00000000", "00000000"),
- ("0000", "00000000", "00000000", "00000000", "00000000", "00000000"),
- ("0000", "00000000", "00000000", "00000000", "00000000", "00000000"),
- ("0000", "00000000", "00000000", "00000000", "00000000", "00000000"),
- ("0000", "00000000", "00000000", "00000000", "00000000", "00000000"),
- ("0000", "00000000", "00000000", "00000000", "00000000", "00000000"),
- ("0000", "00000000", "00000000", "00000000", "00000000", "00000000"),
- ("0000", "00000000", "00000000", "00000000", "00000000", "00000000");
-	
- 
-BEGIN
- 
+	type TEST_VECTOR is RECORD
+		ctrl : STD_LOGIC_VECTOR(3 downto  0);
+		A : STD_LOGIC_VECTOR(M-1 downto 0);
+		B : STD_LOGIC_VECTOR(M-1 downto  0);
+		X : STD_LOGIC_VECTOR(M-1 downto  0);
+		O : STD_LOGIC_VECTOR(M-1 downto 0);
+		flags : STD_LOGIC_VECTOR(7 downto 0);
+	end RECORD;
+
+	type TEST_VECTOR_ARRAY is ARRAY(NATURAL range <>) of TEST_VECTOR;
+
+	constant test_vectors : TEST_VECTOR_ARRAY := (
+		-- CTRL,  A ,     B ,      X ,      O ,      FLAGS
+		("0000", X"0000", X"0000", X"0000", X"0000", "01100001"), -- identity of A=0
+		("0000", X"FF9C", X"0000", X"0000", X"FF9C", "00101010"), -- identity of A=-108
+		("0000", X"03E8", X"0000", X"0000", X"03E8", "01010010") -- identity of A=1000
+	);
+
+begin
+
 	-- Instantiate the Unit Under Test (UUT)
-   uut: ALU_param Generic MAP (N => M)
-		PORT MAP (
-          A => A,
-          B => B,
-          X => X,
-          ctrl => ctrl,
-          O => O,
-          flags => flags
-        );
+	uut: ALU_param 
+	generic map 
+	(
+		N => M
+	)
+	port map 
+	(
+		A => A,
+		B => B,
+		X => X,
+		ctrl => ctrl,
+		O => O,
+		flags => flags
+	);
 
-   -- Stimulus process
-   stim_proc: process
-   begin		
-      -- hold reset state for 100 ns.
-      wait for 100 ns;	
-		
+	-- Stimulus process
+	stim_proc: process
+	begin		
+		-- hold reset state for 100 ns.
+		wait for 100 ns;	
 
-      -- insert stimulus here 
+		for i in test_vectors'range loop
 
-      wait;
-   end process;
+			ctrl <= test_vectors(i).ctrl;
+			A <= test_vectors(i).A;
+			B <= test_vectors(i).B;
+			X <= test_vectors(i).X;
 
-END;
+			wait for wait_time;
+
+			assert O = test_vectors(i).O
+			report "Actual output did not equal expected output"
+			severity error;
+			assert flags = test_vectors(i).flags
+			report "Actual flags did not equal expected flags"
+			severity error;
+
+			wait for wait_time;
+
+		end loop;
+
+	wait;
+	end process;
+
+end;

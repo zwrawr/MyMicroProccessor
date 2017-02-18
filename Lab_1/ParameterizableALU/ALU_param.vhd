@@ -33,6 +33,10 @@ architecture Behavioral of ALU_param is
 	signal A_itrn : SIGNED (N downto 0); -- internal signed signal for A
 	signal B_itrn : SIGNED (N downto 0); -- internal signed signal for B
 	signal X_itrn : integer; -- internal integer for X
+	
+	-- max positive and negitive N bit signed numbers
+	constant max : SIGNED (N-1 downto 0) := to_signed(( 2 ** (N-1) ) - 1, N); 
+	constant min : SIGNED (N-1 downto 0) := to_signed( -2 ** (N-1) , N); 
 begin
 		A_itrn <= RESIZE(signed(A) , N+1); -- connects A to A_itrn as well as converting it to signed
 		B_itrn <= RESIZE(signed(B) , N+1); -- connects B to B_itrn as well as converting it to signed
@@ -58,14 +62,46 @@ begin
 			ROTATE_RIGHT (A_itrn , X_itrn)		when  ctrl = "1111"  else-- Output A rotr X
 		(others =>'U');
 
-	flags(0) <= '1' when O_itrn = 0 else '0'; -- Zero flag
-	flags(1) <= '1' when O_itrn /= 0 else '0'; -- not Zero flag
-	flags(2) <= '1' when O_itrn = 1 else '0'; -- one flag
-	flags(3) <= '1' when O_itrn < 0 else '0'; -- less than zero
-	flags(4) <= '1' when O_itrn > 0 else '0'; -- grater than zero
-	flags(5) <= '1' when O_itrn <= 0 else '0'; -- less than or equal to zero
+	-- overflow flag
+	flags(7) <= 
+		-- cannot overflow on identity operation
+		-- cannot overflow on and operation
+		-- cannot overflow on or operation
+		-- cannot overflow on xor operation
+		-- cannot overflow on not operation
+		
+		'1' when ctrl = "1000" and A_itrn = max else -- overflow if you add one to the max value
+
+		'1' when ctrl = "1001" and A_itrn = min else -- overflow if you minus one to the min value
+		
+		-- overflow if two neg values added give a pos result
+		'1' when ctrl = "1010" and A_itrn(N-1) = '1' and  B_itrn(N-1) = '1' and O_itrn(N-1) = '0' else 
+		-- overflow if two pos values added give a neg result
+		'1' when ctrl = "1010" and A_itrn(N-1) = '0' and  B_itrn(N-1) = '0' and O_itrn(N-1) = '1' else 
+		-- otherwise doesnt overflow
+		
+		-- overflow if a pos value is subtracted from a neg value gives a pos result
+		'1' when ctrl = "1011" and A_itrn(N-1) = '1' and  B_itrn(N-1) = '0' and O_itrn(N-1) = '0' else 
+		-- overflow if a neg value is subtracted from a pos value gives a neg result
+		'1' when ctrl = "1011" and A_itrn(N-1) = '0' and  B_itrn(N-1) = '1' and O_itrn(N-1) = '1' 
+		-- otherwise doesnt overflow
+
+		-- cannot overflow on shift left operation
+		-- cannot overflow on shift right operation
+		-- cannot overflow on rotate left operation
+		-- cannot overflow on rotate right operation
+	
+		else '0';
+	
+	
+	
 	flags(6) <= '1' when O_itrn >= 0 else '0'; -- grater than or equal to zero
-	flags(7) <= '1' when not((not A_itrn(N)='1') xnor (not B_itrn(N)='1')) and O_itrn(N)='1' else '0'; -- overflow
+	flags(5) <= '1' when O_itrn <= 0 else '0'; -- less than or equal to zero
+	flags(4) <= '1' when O_itrn > 0 else '0'; -- grater than zero
+	flags(3) <= '1' when O_itrn < 0 else '0'; -- less than zero
+	flags(2) <= '1' when O_itrn = 1 else '0'; -- one flag
+	flags(1) <= '1' when O_itrn /= 0 else '0'; -- not Zero flag
+	flags(0) <= '1' when O_itrn = 0 else '0'; -- Zero flag
 
 
 end Behavioral;
