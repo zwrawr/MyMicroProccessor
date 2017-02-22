@@ -14,6 +14,10 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
+-- 
+-- Opcode	CommandName
+-- 0000
+
 entity ALU_param is
 	Generic (
 		N : natural := 8 -- data size in bits
@@ -29,6 +33,7 @@ entity ALU_param is
 end ALU_param;
 
 architecture Behavioral of ALU_param is
+
 	signal O_itrn : SIGNED (N downto 0); -- internal signed signal for output
 	signal A_itrn : SIGNED (N downto 0); -- internal signed signal for A
 	signal B_itrn : SIGNED (N downto 0); -- internal signed signal for B
@@ -36,8 +41,10 @@ architecture Behavioral of ALU_param is
 	
 	-- max positive and negitive N bit signed numbers
 	constant max : SIGNED (N-1 downto 0) := to_signed(( 2 ** (N-1) ) - 1, N); 
-	constant min : SIGNED (N-1 downto 0) := to_signed( -2 ** (N-1) , N); 
+	constant min : SIGNED (N-1 downto 0) := to_signed( -2 ** (N-1) , N);
+	
 begin
+
 		A_itrn <= RESIZE(signed(A) , N+1); -- connects A to A_itrn as well as converting it to signed
 		B_itrn <= RESIZE(signed(B) , N+1); -- connects B to B_itrn as well as converting it to signed
 		X_itrn <= to_integer(unsigned(X)); -- converts X to integer and connects to X_itrn

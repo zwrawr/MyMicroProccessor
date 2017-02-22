@@ -27,17 +27,46 @@
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
+USE ieee.numeric_std.ALL;
  
 entity ALU_param_TB is
 end ALU_param_TB;
  
 architecture behavior of ALU_param_TB is 
 
-	-- constants
+	-- ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+	-- From http://stackoverflow.com/questions/24329155/is-there-a-way-to-print-the-values-of-a-signal-to-a-file-from-a-modelsim-simulat
+	-- Allows printing a std_logic_vector as a string that represents it's binary form.
+	-- ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+	function to_bstring(sl : std_logic) return string is
+		variable sl_str_v : string(1 to 3);  -- std_logic image with quotes around
+	begin
+		sl_str_v := std_logic'image(sl);
+		return "" & sl_str_v(2);  -- "" & character to get string
+	end function;
+	
+	function to_bstring(slv : std_logic_vector) return string is
+		alias    slv_norm : std_logic_vector(1 to slv'length) is slv;
+		variable sl_str_v : string(1 to 1);  -- String of std_logic
+		variable res_v    : string(1 to slv'length);
+	begin
+		for idx in slv_norm'range loop
+			sl_str_v := to_bstring(slv_norm(idx));
+			res_v(idx) := sl_str_v(1);
+		end loop;
+		return res_v;
+	end function;
+	-- ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+
+	
+	-- converts an std_logic_vector to a string that represents it's signed value
+	function to_string(val : std_logic_vector) return string is
+	begin
+		return integer'image( to_integer(signed(val)) );
+	end function;
+
+
+	-- Constants
 	constant M : NATURAL := 16;
 	constant wait_time : TIME := 10 ns;
 	
@@ -82,10 +111,23 @@ architecture behavior of ALU_param_TB is
 	type TEST_VECTOR_ARRAY is ARRAY(NATURAL range <>) of TEST_VECTOR;
 
 	constant test_vectors : TEST_VECTOR_ARRAY := (
-		-- CTRL,  A ,     B ,      X ,      O ,      FLAGS
+		-- CTRL, A ,      B ,      X ,      O ,      FLAGS
 		("0000", X"0000", X"0000", X"0000", X"0000", "01100001"), -- identity of A=0
 		("0000", X"FF9C", X"0000", X"0000", X"FF9C", "00101010"), -- identity of A=-108
-		("0000", X"03E8", X"0000", X"0000", X"03E8", "01010010") -- identity of A=1000
+		("0000", X"03E8", X"0000", X"0000", X"03E8", "01010010"), -- identity of A=1000
+		("0000", X"0001", X"0000", X"0000", X"0001", "01010110"), -- identity of A=1
+
+		("0100", X"0000", X"0000", X"0000", X"0000", "01100001"), -- A and B of A=0 , B=0
+		("0100", X"FF94", X"FC17", X"0000", X"FC14", "00101010"), -- A and B of A=-108, B=-1001
+		("0100", X"03E8", X"5213", X"0000", X"0200", "01010010"), -- A and B of A=1000, B=21011
+		("0100", X"FFFF", X"10E0", X"0000", X"10E0", "01010010"), -- A and B of A=-1, B=4320
+		("0100", X"55FF", X"AAAA", X"0000", X"00AA", "01010010"), -- A and B of A=22015, B=-21846
+		
+		("0101", X"0000", X"0000", X"0000", X"0000", "01100001"), -- A and B of A=0 , B=0
+		("0101", X"FF94", X"FC17", X"0000", X"FF97", "00101010"), -- A and B of A=-108, B=-1001
+		("0101", X"03E8", X"5213", X"0000", X"53FB", "01010010"), -- A and B of A=1000, B=21011
+		("0101", X"FFFF", X"10E0", X"0000", X"FFFF", "00101010"), -- A and B of A=-1, B=4320
+		("0101", X"5555", X"AAAA", X"0000", X"FFFF", "00101010") -- A and B of A=22015, B=-21846
 	);
 
 begin
@@ -112,21 +154,32 @@ begin
 		-- hold reset state for 100 ns.
 		wait for 100 ns;	
 
+		-- run the test for every set of data
 		for i in test_vectors'range loop
 
+			-- assign test inputs
 			ctrl <= test_vectors(i).ctrl;
 			A <= test_vectors(i).A;
 			B <= test_vectors(i).B;
 			X <= test_vectors(i).X;
 
+			-- wait long enough for the ALU to process
 			wait for wait_time;
 
+			-- check that the actual output is the same as the expect output
 			assert O = test_vectors(i).O
-			report "Actual output did not equal expected output"
+			report " [ERR!] Actual output did not equal expected output: Actual " & to_string(O) & " , Expected " & to_string(test_vectors(i).O)
 			severity error;
+			
+			-- check that the actual flags is the same as the expect flags
 			assert flags = test_vectors(i).flags
-			report "Actual flags did not equal expected flags"
+			report " [ERR!] Actual flags did not equal expected flags : Actual " & to_bstring(flags) & " , Expected " & to_bstring(test_vectors(i).flags)
 			severity error;
+			
+			-- if there were no isses report that the test was successful
+			assert not ( O = test_vectors(i).O and  flags = test_vectors(i).flags )
+			report " [ OK ] Test number " & integer'image(i)& " was successful!"
+			severity note;
 
 			wait for wait_time;
 
