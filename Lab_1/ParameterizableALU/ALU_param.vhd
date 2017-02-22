@@ -79,7 +79,7 @@ begin
 		
 		'1' when ctrl = "1000" and A_itrn = max else -- overflow if you add one to the max value
 
-		'1' when ctrl = "1001" and A_itrn = min else -- overflow if you minus one to the min value
+		'1' when ctrl = "1001" and A_itrn = min else -- overflow if you minus one to the min value  [????] TODO:: CHECK THIS
 		
 		-- overflow if two neg values added give a pos result
 		'1' when ctrl = "1010" and A_itrn(N-1) = '1' and  B_itrn(N-1) = '1' and O_itrn(N-1) = '0' else 
@@ -100,15 +100,14 @@ begin
 	
 		else '0';
 	
-	
-	
-	flags(6) <= '1' when O_itrn >= 0 else '0'; -- grater than or equal to zero
-	flags(5) <= '1' when O_itrn <= 0 else '0'; -- less than or equal to zero
-	flags(4) <= '1' when O_itrn > 0 else '0'; -- grater than zero
-	flags(3) <= '1' when O_itrn < 0 else '0'; -- less than zero
-	flags(2) <= '1' when O_itrn = 1 else '0'; -- one flag
-	flags(1) <= '1' when O_itrn /= 0 else '0'; -- not Zero flag
-	flags(0) <= '1' when O_itrn = 0 else '0'; -- Zero flag
+	-- Flags are propities of the output and so should only operate on the range of the output
+	flags(6) <= '1' when O_itrn(N-1 downto 0) >= 0 else '0'; -- grater than or equal to zero
+	flags(5) <= '1' when O_itrn(N-1 downto 0) <= 0 else '0'; -- less than or equal to zero
+	flags(4) <= '1' when O_itrn(N-1 downto 0) > 0 else '0'; -- grater than zero
+	flags(3) <= '1' when O_itrn(N-1 downto 0) < 0 else '0'; -- less than zero
+	flags(2) <= '1' when O_itrn(N-1 downto 0) = 1 else '0'; -- one flag
+	flags(1) <= '1' when O_itrn(N-1 downto 0) /= 0 else '0'; -- not Zero flag
+	flags(0) <= '1' when O_itrn(N-1 downto 0) = 0 else '0'; -- Zero flag
 
 
 end Behavioral;

@@ -42,9 +42,9 @@
    <wvobject fp_name="/alu_param_tb/o" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">o[15:0]</obj_property>
       <obj_property name="ObjectShortName">o[15:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
       <obj_property name="CustomSignalColor">#00ffff</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/alu_param_tb/flags" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">flags[7:0]</obj_property>
