@@ -3,7 +3,7 @@
 -- Uni			:	University of York
 -- Course		:	Electronic Engineering
 -- Module  		:	Computer Architectures 
--- Engineers	:	[Zak West] & [Thomas Meadows]
+-- Engineers	:	Y3839090 & Y3840426
 -- 
 -- Create Date	:	13:19:20 02/17/2017 
 -- Design Name	:	ALU_param - Behavioral 
@@ -14,7 +14,6 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 use work.DigEng.ALL;
-
 
 entity ALU_param is
 	Generic (
@@ -77,7 +76,6 @@ begin
 
 	-- Overflow flag
 	flags(7) <= 
-	
 		-- Will overflow if you add one to the max positive value
 		'1' when ctrl = "1000" and A_itrn = max_pos else 
 

@@ -1,0 +1,63 @@
+ISim P.28xd (signature 0xa0883be4)
+This is a Full version of ISim.
+Time resolution is 1 ps
+WARNING: Simulation object /alu_param_tb/test_vectors was not traceable in the design for the following reason:
+ISim does not yet support tracing of constant and generic multi-dimensional arrays.
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+at 110 ns: Note:  [ OK ] Test 0 was successful! (/alu_param_tb/).
+at 130 ns: Note:  [ OK ] Test 1 was successful! (/alu_param_tb/).
+at 150 ns: Note:  [ OK ] Test 2 was successful! (/alu_param_tb/).
+at 170 ns: Note:  [ OK ] Test 3 was successful! (/alu_param_tb/).
+at 190 ns: Note:  [ OK ] Test 4 was successful! (/alu_param_tb/).
+at 210 ns: Note:  [ OK ] Test 5 was successful! (/alu_param_tb/).
+at 230 ns: Note:  [ OK ] Test 6 was successful! (/alu_param_tb/).
+at 250 ns: Note:  [ OK ] Test 7 was successful! (/alu_param_tb/).
+at 270 ns: Note:  [ OK ] Test 8 was successful! (/alu_param_tb/).
+at 290 ns: Note:  [ OK ] Test 9 was successful! (/alu_param_tb/).
+at 310 ns: Note:  [ OK ] Test 10 was successful! (/alu_param_tb/).
+at 330 ns: Note:  [ OK ] Test 11 was successful! (/alu_param_tb/).
+at 350 ns: Note:  [ OK ] Test 12 was successful! (/alu_param_tb/).
+at 370 ns: Note:  [ OK ] Test 13 was successful! (/alu_param_tb/).
+at 390 ns: Note:  [ OK ] Test 14 was successful! (/alu_param_tb/).
+at 410 ns: Note:  [ OK ] Test 15 was successful! (/alu_param_tb/).
+at 430 ns: Note:  [ OK ] Test 16 was successful! (/alu_param_tb/).
+at 450 ns: Note:  [ OK ] Test 17 was successful! (/alu_param_tb/).
+at 470 ns: Note:  [ OK ] Test 18 was successful! (/alu_param_tb/).
+at 490 ns: Note:  [ OK ] Test 19 was successful! (/alu_param_tb/).
+at 510 ns: Note:  [ OK ] Test 20 was successful! (/alu_param_tb/).
+at 530 ns: Note:  [ OK ] Test 21 was successful! (/alu_param_tb/).
+at 550 ns: Note:  [ OK ] Test 22 was successful! (/alu_param_tb/).
+at 570 ns: Note:  [ OK ] Test 23 was successful! (/alu_param_tb/).
+at 590 ns: Note:  [ OK ] Test 24 was successful! (/alu_param_tb/).
+at 610 ns: Note:  [ OK ] Test 25 was successful! (/alu_param_tb/).
+at 630 ns: Note:  [ OK ] Test 26 was successful! (/alu_param_tb/).
+at 650 ns: Note:  [ OK ] Test 27 was successful! (/alu_param_tb/).
+at 670 ns: Note:  [ OK ] Test 28 was successful! (/alu_param_tb/).
+at 690 ns: Note:  [ OK ] Test 29 was successful! (/alu_param_tb/).
+at 710 ns: Note:  [ OK ] Test 30 was successful! (/alu_param_tb/).
+at 730 ns: Note:  [ OK ] Test 31 was successful! (/alu_param_tb/).
+at 750 ns: Note:  [ OK ] Test 32 was successful! (/alu_param_tb/).
+at 770 ns: Note:  [ OK ] Test 33 was successful! (/alu_param_tb/).
+at 790 ns: Note:  [ OK ] Test 34 was successful! (/alu_param_tb/).
+at 810 ns: Note:  [ OK ] Test 35 was successful! (/alu_param_tb/).
+at 830 ns: Note:  [ OK ] Test 36 was successful! (/alu_param_tb/).
+at 850 ns: Note:  [ OK ] Test 37 was successful! (/alu_param_tb/).
+at 870 ns: Note:  [ OK ] Test 38 was successful! (/alu_param_tb/).
+at 890 ns: Note:  [ OK ] Test 39 was successful! (/alu_param_tb/).
+at 910 ns: Note:  [ OK ] Test 40 was successful! (/alu_param_tb/).
+at 930 ns: Note:  [ OK ] Test 41 was successful! (/alu_param_tb/).
+at 950 ns: Note:  [ OK ] Test 42 was successful! (/alu_param_tb/).
+at 970 ns: Note:  [ OK ] Test 43 was successful! (/alu_param_tb/).
+at 990 ns: Note:  [ OK ] Test 44 was successful! (/alu_param_tb/).
+at 1010 ns: Note:  [ OK ] Test 45 was successful! (/alu_param_tb/).
+at 1030 ns: Note:  [ OK ] Test 46 was successful! (/alu_param_tb/).
+at 1050 ns: Note:  [ OK ] Test 47 was successful! (/alu_param_tb/).
+at 1070 ns: Note:  [ OK ] Test 48 was successful! (/alu_param_tb/).
+at 1090 ns: Note:  [ OK ] Test 49 was successful! (/alu_param_tb/).
+at 1110 ns: Note:  [ OK ] Test 50 was successful! (/alu_param_tb/).
+at 1130 ns: Note:  [ OK ] Test 51 was successful! (/alu_param_tb/).
+at 1150 ns: Note:  [ OK ] Test 52 was successful! (/alu_param_tb/).
+at 1170 ns: Error:  [ERR!] Test 53 Actual output did not equal expected output: Actual 0 , Expected -1
+at 1170 ns: Error:  [ERR!] Test 53 Actual flags did not equal expected flags : Actual 01100001 , Expected 10000001
+ISim>  

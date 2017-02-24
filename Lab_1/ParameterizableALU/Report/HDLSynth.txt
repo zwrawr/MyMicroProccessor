@@ -1,0 +1,45 @@
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <ALU_param>.
+    Related source file is "E:\University\_Second Year\Computer Architectures\assesment\MyMicroProccessor\Lab_1\ParameterizableALU\ALU_param.vhd".
+        N = 8
+    Found 8-bit adder for signal <A_itrn[7]_B_itrn[7]_add_27_OUT> created at line 69.
+    Found 8-bit adder for signal <A_itrn[7]_GND_5_o_add_31_OUT> created at line 1253.
+    Found 8-bit subtractor for signal <A_itrn[7]_B_itrn[7]_sub_26_OUT<7:0>> created at line 70.
+    Found 8-bit subtractor for signal <A_itrn[7]_GND_5_o_sub_30_OUT<7:0>> created at line 1320.
+    Found 8-bit shifter rotate right for signal <A_itrn[7]_X_itrn[30]_rotate_right_17_OUT> created at line 3021
+    Found 8-bit shifter rotate left for signal <A_itrn[7]_X_itrn[30]_rotate_left_19_OUT> created at line 3012
+    Found 8-bit shifter arithmetic right for signal <A_itrn[7]_X_itrn[30]_shift_right_21_OUT> created at line 2982
+    Found 8-bit shifter logical left for signal <A_itrn[7]_X_itrn[30]_shift_left_23_OUT> created at line 2973
+    Found 8-bit 13-to-1 multiplexer for signal <O> created at line 27.
+    Found 8-bit comparator greater for signal <flags<3>> created at line 99
+    Found 8-bit comparator greater for signal <flags<4>> created at line 100
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   2 Comparator(s).
+	inferred  16 Multiplexer(s).
+	inferred   4 Combinational logic shifter(s).
+Unit <ALU_param> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 1
+ 8-bit addsub                                          : 1
+# Comparators                                          : 2
+ 8-bit comparator greater                              : 2
+# Multiplexers                                         : 16
+ 1-bit 2-to-1 multiplexer                              : 6
+ 8-bit 2-to-1 multiplexer                              : 10
+# Logic shifters                                       : 4
+ 8-bit shifter arithmetic right                        : 1
+ 8-bit shifter logical left                            : 1
+ 8-bit shifter rotate left                             : 1
+ 8-bit shifter rotate right                            : 1
+# Xors                                                 : 1
+ 8-bit xor2                                            : 1
+
+=========================================================================
