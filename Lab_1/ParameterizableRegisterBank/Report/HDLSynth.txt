@@ -1,0 +1,60 @@
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <Pram_Registers>.
+    Related source file is "E:\University\_Second Year\Computer Architectures\assesment\MyMicroProccessor\Lab_1\ParameterizableRegisterBank\Pram_Registers.vhd".
+        num_reg = 8
+        data_size = 16
+    Summary:
+	no macro.
+Unit <Pram_Registers> synthesized.
+
+Synthesizing Unit <decoder>.
+    Related source file is "E:\University\_Second Year\Computer Architectures\assesment\MyMicroProccessor\Lab_1\ParameterizableRegisterBank\decoder.vhd".
+        num_reg = 8
+    Summary:
+	no macro.
+Unit <decoder> synthesized.
+
+Synthesizing Unit <triestate_buffer>.
+    Related source file is "E:\University\_Second Year\Computer Architectures\assesment\MyMicroProccessor\Lab_1\ParameterizableRegisterBank\triestate_buffer.vhd".
+        data_size = 16
+    Found 1-bit tristate buffer for signal <data_out<15>> created at line 38
+    Found 1-bit tristate buffer for signal <data_out<14>> created at line 38
+    Found 1-bit tristate buffer for signal <data_out<13>> created at line 38
+    Found 1-bit tristate buffer for signal <data_out<12>> created at line 38
+    Found 1-bit tristate buffer for signal <data_out<11>> created at line 38
+    Found 1-bit tristate buffer for signal <data_out<10>> created at line 38
+    Found 1-bit tristate buffer for signal <data_out<9>> created at line 38
+    Found 1-bit tristate buffer for signal <data_out<8>> created at line 38
+    Found 1-bit tristate buffer for signal <data_out<7>> created at line 38
+    Found 1-bit tristate buffer for signal <data_out<6>> created at line 38
+    Found 1-bit tristate buffer for signal <data_out<5>> created at line 38
+    Found 1-bit tristate buffer for signal <data_out<4>> created at line 38
+    Found 1-bit tristate buffer for signal <data_out<3>> created at line 38
+    Found 1-bit tristate buffer for signal <data_out<2>> created at line 38
+    Found 1-bit tristate buffer for signal <data_out<1>> created at line 38
+    Found 1-bit tristate buffer for signal <data_out<0>> created at line 38
+    Summary:
+	inferred  16 Tristate(s).
+Unit <triestate_buffer> synthesized.
+
+Synthesizing Unit <param_reg>.
+    Related source file is "E:\University\_Second Year\Computer Architectures\assesment\MyMicroProccessor\Lab_1\ParameterizableRegisterBank\register.vhd".
+        data_size = 16
+    Found 16-bit register for signal <internal>.
+    Summary:
+	inferred  16 D-type flip-flop(s).
+Unit <param_reg> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Registers                                            : 7
+ 16-bit register                                       : 7
+# Tristates                                            : 256
+ 1-bit tristate buffer                                 : 256
+
+=========================================================================
