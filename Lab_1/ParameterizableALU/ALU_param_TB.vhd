@@ -36,7 +36,7 @@ end ALU_param_TB;
 architecture behavior of ALU_param_TB is 
 
 	-- ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ====  
-	-- From http://stackoverflow.com/questions/24329155/is-there-a-way-to-print-the-values-of-a-signal-to-a-file-from-a-modelsim-simulat
+	-- From http://stackoverflow.com/a/24336034 By Morten Zilmer
 	-- Allows printing a std_logic_vector as a string that represents it's binary form.
 	-- ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ====  
 	function to_bstring(sl : std_logic) return string is
@@ -68,7 +68,7 @@ architecture behavior of ALU_param_TB is
 
 
 	-- Constants
-	constant M : NATURAL := 16;
+	constant M : NATURAL := 16; -- We are testing a 16 bit ALU
 	constant wait_time : TIME := 10 ns;
 	
 	-- Component Declaration for the Unit Under Test (UUT)
@@ -93,7 +93,7 @@ architecture behavior of ALU_param_TB is
    signal A : STD_LOGIC_VECTOR(M-1 downto 0) := (others => '0');
    signal B : STD_LOGIC_VECTOR(M-1 downto 0) := (others => '0');
    signal X : STD_LOGIC_VECTOR(log2(M)-1 downto 0) := (others => '0');
-   signal ctrl : STD_LOGIC_VECTOR(3 downto 0) := (others => '0'); -- The opcode
+   signal ctrl : STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
 
  	--Outputs
    signal O : STD_LOGIC_VECTOR(M-1 downto 0);
@@ -192,8 +192,11 @@ architecture behavior of ALU_param_TB is
 		-- A rotr x
 		("1111", X"0000", X"0000", X"2", X"0000", "01100001"), 
 		("1111", X"1111", X"0000", X"1", X"8888", "00101010"),  
-		("1111", X"1081", X"0000", X"1", X"8840", "00101010") 
+		("1111", X"1081", X"0000", X"1", X"8840", "00101010"), 
 		
+		-- THIS TEST WILL FAIL
+		("1010", X"0000", X"0000", X"0", X"FFFF", "10000001") 
+
 	);
 
 begin
