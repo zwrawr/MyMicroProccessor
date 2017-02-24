@@ -13,10 +13,8 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
+use work.DigEng.ALL;
 
--- 
--- Opcode	CommandName
--- 0000
 
 entity ALU_param is
 	Generic (
@@ -25,7 +23,7 @@ entity ALU_param is
 	Port ( 
 		A : in  STD_LOGIC_VECTOR (N-1 downto 0);
 		B : in  STD_LOGIC_VECTOR (N-1 downto 0);
-		X : in  STD_LOGIC_VECTOR (N-1 downto 0); -- shift/rotate amount input
+		X : in  STD_LOGIC_VECTOR (log2(N)-1 downto 0); -- shift/rotate amount input
 		ctrl : in  STD_LOGIC_VECTOR (3 downto 0); -- control signals from opcode
 		O : out  STD_LOGIC_VECTOR (N-1 downto 0);
 		flags :out  STD_LOGIC_VECTOR (7 downto 0) -- flags
@@ -65,8 +63,8 @@ begin
 			A_itrn - B_itrn 		when  ctrl = "1011"  else-- Output A-B
 			SHIFT_LEFT (A_itrn , X_itrn)  		when  ctrl = "1100"  else-- Output A sl X
 			SHIFT_RIGHT (A_itrn , X_itrn) 		when  ctrl = "1101"  else-- Output A sr X
-			ROTATE_LEFT (A_itrn , X_itrn) 		when  ctrl = "1110"  else-- Output A rotl X
-			ROTATE_RIGHT (A_itrn , X_itrn)		when  ctrl = "1111"  else-- Output A rotr X
+			RESIZE(ROTATE_LEFT (signed(A) , X_itrn), N+1) 		when  ctrl = "1110"  else-- Output A rotl X
+			RESIZE(ROTATE_RIGHT (signed(A) , X_itrn), N+1)		when  ctrl = "1111"  else-- Output A rotr X
 		(others =>'U');
 
 	-- overflow flag

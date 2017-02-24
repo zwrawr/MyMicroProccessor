@@ -87,16 +87,15 @@ ARCHITECTURE behavior OF Param_Registers_TB IS
 	
 	constant test_vectors : TEST_VECTOR_ARRAY := 
 	(
--- wr_en,     addr_A,    addr_B,    addr_C,    data_in,      A_out,        B_out
-	('0',      "000",      "000",      "000",      X"0000",      X"0000",      X"0000"),
-	('1',      "000",      "000",      "001",      X"FFFF",      X"0000",      X"0000"),
-	('1',      "000",      "000",      "010",      X"1111",      X"0000",      X"0000"),
-	('0',      "001",      "010",      "000",      X"0000",      X"FFFF",      X"1111")--,
-
---	('0',      "000",      "000",      "000",      X"0000",      X"0000",      X"0000"),
-
-	
-	
+	-- wr_en,     addr_A,    addr_B,    addr_C,    data_in,      A_out,        B_out
+		('0',      "000",      "000",      "000",      X"0000",      X"0000",      X"0000"),
+		('1',      "000",      "000",      "001",      X"FFFF",      X"0000",      X"0000"),
+		('1',      "000",      "000",      "010",      X"1111",      X"0000",      X"0000"),
+		('0',      "001",      "010",      "000",      X"0000",      X"FFFF",      X"1111"),
+		('1',      "000",      "000",      "111",      X"0011",      X"0000",      X"0000"),
+		('1',      "111",      "111",      "110",      X"8800",      X"0011",      X"0011"),
+		('1',      "111",      "110",      "000",      X"AAAA",      X"0011",      X"8800"),
+		('0',      "000",      "000",      "000",      X"0000",      X"0000",      X"0000")
 	);
 	
 BEGIN
@@ -152,13 +151,18 @@ BEGIN
 			
 			-- check that output A is the same as the expected
 			assert A_out = test_vectors(i).A_out
-			report "ERROR! A IS BROKEN!"
+			report "Test " & integer'image(i) & " ERROR! A IS BROKEN!"
 			severity error;
 			
 			-- check that output A is the same as the expected
 			assert B_out = test_vectors(i).B_out
-			report "ERROR! B IS BROKEN!"
+			report "Test " & integer'image(i) & " ERROR! B IS BROKEN!"
 			severity error;
+			
+			-- check that output A is the same as the expected
+			assert (B_out /= test_vectors(i).B_out or A_out /= test_vectors(i).A_out)
+			report "Test " & integer'image(i) & " passed!"
+			severity note;
 			
 			wait for clk_period;
 			
