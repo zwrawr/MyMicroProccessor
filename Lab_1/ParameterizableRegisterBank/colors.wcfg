@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="E:/University/_Second Year/Computer Architectures/assesment/MyMicroProccessor/Lab_1/ParameterizableRegisterBank/Param_Registers_TB_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="digeng" />
+            <top_module name="numeric_std" />
+            <top_module name="param_registers_tb" />
+            <top_module name="std_logic_1164" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="11" />
+   <wvobject fp_name="/param_registers_tb/addr_a" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">addr_a[2:0]</obj_property>
+      <obj_property name="ObjectShortName">addr_a[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/param_registers_tb/addr_b" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">addr_b[2:0]</obj_property>
+      <obj_property name="ObjectShortName">addr_b[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/param_registers_tb/addr_c" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">addr_c[2:0]</obj_property>
+      <obj_property name="ObjectShortName">addr_c[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/param_registers_tb/wr_en" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">wr_en</obj_property>
+      <obj_property name="ObjectShortName">wr_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/param_registers_tb/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/param_registers_tb/data_in" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data_in[15:0]</obj_property>
+      <obj_property name="ObjectShortName">data_in[15:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/param_registers_tb/a_out" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">a_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">a_out[15:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/param_registers_tb/b_out" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">b_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">b_out[15:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/param_registers_tb/num_reg" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">num_reg</obj_property>
+      <obj_property name="ObjectShortName">num_reg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/param_registers_tb/data_size" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">data_size</obj_property>
+      <obj_property name="ObjectShortName">data_size</obj_property>
+   </wvobject>
+   <wvobject fp_name="/param_registers_tb/clk_period" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_period</obj_property>
+      <obj_property name="ObjectShortName">clk_period</obj_property>
+   </wvobject>
+</wave_config>
