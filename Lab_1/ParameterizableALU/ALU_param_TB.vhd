@@ -20,7 +20,8 @@ end ALU_param_TB;
  
 architecture behavior of ALU_param_TB is 
 
-	-- ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ====  
+
+	-- ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ====  
 	-- From http://stackoverflow.com/a/24336034 By Morten Zilmer
 	-- Allows printing a std_logic_vector as a string that represents it's binary form.
 	-- ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ====  

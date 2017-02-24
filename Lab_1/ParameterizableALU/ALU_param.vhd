@@ -76,6 +76,7 @@ begin
 
 	-- Overflow flag
 	flags(7) <= 
+
 		-- Will overflow if you add one to the max positive value
 		'1' when ctrl = "1000" and A_itrn = max_pos else 
 
