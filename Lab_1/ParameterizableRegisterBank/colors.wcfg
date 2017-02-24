@@ -12,52 +12,59 @@
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="11" />
-   <wvobject fp_name="/param_registers_tb/addr_a" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">addr_a[2:0]</obj_property>
-      <obj_property name="ObjectShortName">addr_a[2:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/param_registers_tb/addr_b" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">addr_b[2:0]</obj_property>
-      <obj_property name="ObjectShortName">addr_b[2:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/param_registers_tb/addr_c" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">addr_c[2:0]</obj_property>
-      <obj_property name="ObjectShortName">addr_c[2:0]</obj_property>
-   </wvobject>
+   <WVObjectSize size="8" />
    <wvobject fp_name="/param_registers_tb/wr_en" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">wr_en</obj_property>
       <obj_property name="ObjectShortName">wr_en</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#000000</obj_property>
    </wvobject>
    <wvobject fp_name="/param_registers_tb/clk" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#000000</obj_property>
+   </wvobject>
+   <wvobject fp_name="/param_registers_tb/addr_a" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">addr_a[2:0]</obj_property>
+      <obj_property name="ObjectShortName">addr_a[2:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#808080</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/param_registers_tb/addr_b" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">addr_b[2:0]</obj_property>
+      <obj_property name="ObjectShortName">addr_b[2:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#808080</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/param_registers_tb/addr_c" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">addr_c[2:0]</obj_property>
+      <obj_property name="ObjectShortName">addr_c[2:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#808080</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/param_registers_tb/data_in" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">data_in[15:0]</obj_property>
       <obj_property name="ObjectShortName">data_in[15:0]</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#000000</obj_property>
    </wvobject>
    <wvobject fp_name="/param_registers_tb/a_out" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">a_out[15:0]</obj_property>
       <obj_property name="ObjectShortName">a_out[15:0]</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#c0c0c0</obj_property>
    </wvobject>
    <wvobject fp_name="/param_registers_tb/b_out" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">b_out[15:0]</obj_property>
       <obj_property name="ObjectShortName">b_out[15:0]</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/param_registers_tb/num_reg" type="other" db_ref_id="1">
-      <obj_property name="ElementShortName">num_reg</obj_property>
-      <obj_property name="ObjectShortName">num_reg</obj_property>
-   </wvobject>
-   <wvobject fp_name="/param_registers_tb/data_size" type="other" db_ref_id="1">
-      <obj_property name="ElementShortName">data_size</obj_property>
-      <obj_property name="ObjectShortName">data_size</obj_property>
-   </wvobject>
-   <wvobject fp_name="/param_registers_tb/clk_period" type="other" db_ref_id="1">
-      <obj_property name="ElementShortName">clk_period</obj_property>
-      <obj_property name="ObjectShortName">clk_period</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#c0c0c0</obj_property>
    </wvobject>
 </wave_config>
