@@ -1,0 +1,18 @@
+    ; data_addr is in R7
+    ; word_length is in R1
+    
+    move R2, R7                 ; R2 is data
+    movi R3, 0x0000             ; R3 is parity
+    move R4, R1                 ; R4 is i
+    movi R5, 0x0001             ; R4 is mask
+
+loop_start_label: 
+    br R4, 000, loop_end_label      ; if i is zero exit the loop
+    and R6, R2, R4              ; bit mask data
+    xor R3, R6, R3              ; keep track of parity
+    shr R2, R2, 1               ; go to next bit
+    dec R4, R4
+    br R0, 000, loop_start_label   ; go back to the beginning of the loop
+    
+loop_end_label: 
+    storo R7, R3, 2         ; store output

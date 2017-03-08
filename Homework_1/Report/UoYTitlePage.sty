@@ -1,0 +1,67 @@
+
+\ProvidesPackage{UoYTitlePage}[2013/01/13 v0.1 A test package]
+
+\RequirePackage{graphicx}
+\RequirePackage{color}
+
+\definecolor{yorkoffgray}{HTML}{333f48}
+
+\newcommand*{\logo}[1]{\gdef\@logo{#1}}
+\newcommand*{\@logo}{logo}
+
+\newcommand*{\uni}[1]{\gdef\@uni{#1}}
+\newcommand*{\@uni}{The University of York}
+
+\newcommand*{\dept}[1]{\gdef\@dept{#1}}
+\newcommand*{\@dept}{The Department of Electronics}
+
+\newcommand*{\module}[1]{\gdef\@module{#1}}
+\newcommand*{\@module}{Some Module}
+
+\newcommand*{\project}[1]{\gdef\@project{#1}}
+\newcommand*{\@project}{Final Year Project}
+
+\newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}
+\newcommand*{\@supervisor}{Your Supervisor}
+
+\newcommand*{\abstracttext}[1]{\gdef\@abstracttext{#1}}
+\newcommand*{\@abstracttext}{An abstract for your report}
+
+\renewcommand*{\maketitle}{%
+	\begin{titlepage}
+    	\color{yorkoffgray}
+          \centering
+          \includegraphics[width=0.75\textwidth]{\@logo}\par\vspace{-5mm}
+          {\scshape\LARGE \@dept \par}
+          \vspace{0cm}
+
+          {\scshape\Large \@module \par}
+          \vspace{1cm}
+
+          {\huge\bfseries \@project \par}
+
+          \vfill
+
+          % abstract
+          \begin{abstract}
+              \centering % center the abstract
+              \parbox{0.75\textwidth}
+              {
+                  \centering % center the text in the abstract
+                  \normalsize %  Reset the size
+                  \@abstracttext % The abstract text
+              }
+          \end{abstract}
+
+
+          \vfill
+
+          {\Large \makeatletter \@author \makeatother \par}
+          %{\normalsize supervised by : \@supervisorname \par}
+          \vspace{0.5cm}
+
+          {\large \today\par}
+        
+	\end{titlepage}
+}
+\endinput

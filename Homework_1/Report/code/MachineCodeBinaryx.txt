@@ -1,0 +1,13 @@
+1000 1xxx  xxxx xxxx    xxxx x111  xxxx x010 ; move R2, R7
+1000 0xxx  0000 0000    0000 0000  xxxx x011 ; movi R3, 0x0000
+1000 1xxx  xxxx xxxx    xxxx x001  xxxx x100 ; move R4, R1
+1000 0xxx  0000 0000    0000 0001  xxxx x011 ; movi R5, 0x0001
+                                             ; loop_start_label: 
+1100 0000  0000 0110    xxxx x100  xxxx xxxx ; brz R4, loop_end_label
+0110 0xxx  xxxx x100    xxxx x010  xxxx x110 ; and R6, R2, R4
+0111 0xxx  xxxx x011    xxxx x110  xxxx x011 ; xor R3, R6, R3
+0100 1xxx  xxxx 0001    xxxx x010  xxxx x010 ; shr R2, R2, 1
+0001 1xxx  xxxx xxxx    xxxx x100  xxxx x100 ; dec R4, R4
+1100 0111  1111 1011    xxxx x000  xxxx xxxx ; br R0, 000, loop_start_label 
+                                             ; loop_end_label: 
+1011 1000  0000 0010    xxxx x011  xxxx x111 ; storo R7, R3, 2

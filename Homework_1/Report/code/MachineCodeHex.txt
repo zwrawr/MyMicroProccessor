@@ -1,0 +1,13 @@
+0x88000702  ; move R2, R7
+0x80000003  ; movi R3, 000
+0x88000104  ; move R4, R1
+0x80000103  ; movi R5, 001
+            ; loop_start_label: 
+0xC0060400  ; brz R4, loop_end_label
+0x60040206  ; and R6, R2, R4
+0x70030603  ; 0or R3, R6, R3
+0x48010202  ; shr R2, R2, 1
+0x18000404  ; dec R4, R4
+0xC7FB0000  ; jmp loop_start_label 
+            ; loop_end_label: 
+0xB8020307  ; storo R7, R3, 2
