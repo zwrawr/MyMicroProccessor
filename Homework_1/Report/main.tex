@@ -109,7 +109,7 @@
 \usepackage[colorlinks=false, allbordercolors={0 0 0}, linkbordercolor=blue, pdfborderstyle={/S/U/W 1}]{hyperref}
 
 % Tell latex that your images are in a folder called Images
-\graphicspath{{Images/}}
+\graphicspath{{Images/},{tables/}}
 
 % Use url for better url handling
 \usepackage{url}
@@ -152,7 +152,7 @@
 \logo{logo}
 
 \abstracttext{
-    . . . 
+	Homework one for Computer Architectures module.
 }
 
 % ====================================
@@ -200,7 +200,7 @@
         
         	\subsubsection{Assembly}
             
-            	This is the above pseudo code converted to the assembly defined for architecture B. 
+            	This is the given pseudo code converted to the assembly language defined for architecture B.
             	\lstinputlisting[language={[x86masm]Assembler},title={Assembly code}]{code/assembly.txt}
                 \vspace{1cm}
 
@@ -221,14 +221,20 @@
                 
      	\subsection{Control Signals}
 
+		\begin{figure}[ht]
+          			\centering
+          			\includegraphics[width=1\textwidth]{tables/Q1ControlSignals}
+          			\caption{Stages and control signals}
+         		\end{figure}
+
                 
-	\section{Question 2}
+\section{Question 2}
     	
         Here is a table showing all the control signals need to execute the instruction with the multi-cycle architecture C.
     
         \begin{figure}[ht]
           \centering
-          \includegraphics[width=0.9\textwidth]{tables/ControlSignals.pdf}
+          \includegraphics[width=1\textwidth]{tables/Q2ControlSignals}
           \caption{Stages and control signals}
         \end{figure}
         
@@ -239,7 +245,7 @@
     
     \begin{figure}[ht]
       \centering
-      \includegraphics[width=0.9\textwidth]{tables/Instructions_Table.pdf}
+      \includegraphics[width=1\textwidth]{tables/InstructionSet}
       \caption{Instruction set encoding}
     \end{figure}
 
@@ -251,13 +257,13 @@
 	\printbibliography
 	\newpage
 	
-    % ============
-	% Appendix Pages
-	% ============
-    \appendix
-    \section*{Appendices}
-    \addcontentsline{toc}{section}{Appendices}
-    \renewcommand{\thesubsection}{\Alph{subsection}}
+% ============
+% Appendix Pages
+% ============
+%   \appendix
+%  \section*{Appendices}
+%   \addcontentsline{toc}{section}{Appendices}
+%    \renewcommand{\thesubsection}{\Alph{subsection}}
     
     % Add appendices here as subsections
     
