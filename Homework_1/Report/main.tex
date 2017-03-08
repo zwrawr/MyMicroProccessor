@@ -64,6 +64,7 @@
 
 % Setup style of code listings
 \lstset{
+    basicstyle=\small,
     breakatwhitespace=false,
     breaklines=true,
     commentstyle=\itshape\color{commentcolor},
@@ -142,7 +143,7 @@
 \uni{University of York}
 \dept{Department of Electronics}
 
-\module{Computer Architectures}
+\module{ELE00009I : Computer Architectures}
 \project{Homework One}
 
 \title{Homework One}
@@ -152,7 +153,7 @@
 \logo{logo}
 
 \abstracttext{
-	Homework one for Computer Architectures module.
+	Homework One for the Second Year ELE00009I Computer Architectures Module.
 }
 
 % ====================================
@@ -180,42 +181,35 @@
 	\section{Question 1}
 		\subsection{Extra Instructions}
         
-        The current instruction set for architecture B is lacking the XOR and AND instructions. These are both logic instructions so they will be grouped with the other logic instructions. This means there opcodes will start with 01 (the same as the other logic instructions). Both of these instruction take the three operands Rt, Ra and Rb and so will use the same instruction coding as the ADD and SUB instructions (ADD and SUB also take Rt, Ra and Rb operands).
-        
-\begin{table}[ht]
-\centering
-\caption{The extra instructions need for Arch B to run the program}
-\label{table:extrainstructions}
-\begin{tabular}{l|lll}
-\rowcolor[HTML]{417CB4} 
-{\color[HTML]{FFFFFF} \textbf{Command}} & {\color[HTML]{FFFFFF} \textbf{Operands}} & {\color[HTML]{FFFFFF} \textbf{Opcode}} & {\color[HTML]{FFFFFF} \textbf{Fields}} \\ \hline
-\rowcolor[HTML]{C4D9E1} 
-\cellcolor[HTML]{417CB4}{\color[HTML]{FFFFFF} and} & Rt, Ra, Rb & 01 100 & xxx xxxx xBBB xxxx xAAA xxxx xTTT \\
-\rowcolor[HTML]{DBE5E8} 
-\cellcolor[HTML]{417CB4}{\color[HTML]{FFFFFF} xor} & Rt, Ra, Rb & 01 110 & xxx xxxx xBBB xxxx xAAA xxxx xTTT
-\end{tabular}
-\end{table}
+        The current instruction set for architecture B is lacking the XOR and AND instructions necessary to implement the pseudo code. These are both logic instructions, so they will be grouped with the other logic instructions. This means there opcodes will start with ``01'' (the same as the other logic instructions). Both of these instruction take the three operands Rt, Ra and Rb and so will use the same instruction coding as the ADD and SUB instructions (ADD and SUB also take Rt, Ra and Rb operands).
+
+
+		\begin{figure}[ht]
+          			\centering
+          			\includegraphics[width=1\textwidth]{tables/ExtraInstruction}
+          			\caption{Extra Instructions}
+         		\end{figure}
 
 		\subsection{Conversions}
         
         	\subsubsection{Assembly}
             
-            	This is the given pseudo code converted to the assembly language defined for architecture B.
+            	This is the given pseudo code converted to the assembly language defined for architecture B. Using the two extra instructions that were defined above.
             	\lstinputlisting[language={[x86masm]Assembler},title={Assembly code}]{code/assembly.txt}
                 \vspace{1cm}
 
              \subsubsection{Machine code - Binary}
              
-             	This is the above assembly code hand assembled into binary. ``x" has been used to represent ``don't care'' bits.
+             	This is the above assembly code hand assembled into binary. ``x'' has been used to represent ``don't care'' bits.
              	\lstinputlisting[language={[x86masm]Assembler},title={Machine code - Binary with don't cares}]{code/MachineCodeBinaryx.txt}
                
-               To be able to convert this to hex, the “don’t care” bits have to changed to either 0 or 1. I decided to convert all of the ``dont care'' bits to 0’s.
+               To be able to convert this to hex, the “don't care'' bits have to changed to either 0 or 1. I decided to convert all of the ``don't care'' bits to 0's.
                
                \lstinputlisting[language={[x86masm]Assembler},title={Machine code - Binary, don't cares replace with 0s}]{code/MachineCodeBinary.txt}
 
              \subsubsection{Machine code - Hex}
              
-             This is the above binary machine code shown as hexadecimal. Remember all “don’t cares” have been converted to zero so that the values can be represented in hex.
+             This is the above binary machine code shown as hexadecimal. Remember all “don't cares'' have been converted to zero so that the values can be represented in hex.
              
 				\lstinputlisting[language={[x86masm]Assembler},title={Machine code - Hex, don't cares replace with 0s}]{code/MachineCodeHex.txt}
                 
@@ -228,9 +222,8 @@
           			\caption{Control signals}
          		\end{figure}
 
-\newpage
-
-\section{Question 2}
+ 
+  \section{Question 2}
     	
         Here is a table showing all the control signals need to execute the instruction with the multi-cycle architecture C.
     
@@ -240,17 +233,18 @@
           \caption{Stages and control signals}
         \end{figure}
         
-        
-	\section{Question 3}
+  \newpage    
+  \section{Question 3}
     
     Here is my encoding for each of the instructions in the set.
     
     \begin{figure}[ht]
       \centering
-      \includegraphics[width=1\textwidth]{tables/InstructionSet}
-      \caption{Instruction set encoding}
+      \includegraphics[width=0.975\textwidth]{tables/InstructionSet}
+      \caption{Instruction set encoding.}
     \end{figure}
 
+ In the above table; T indicates a bit of Rt , A indicates a bit of Ra , B indicates a bit of Rb, I indicates a bit of an Intermediate value, N indicates a bit of a shift amount, O indicates a bit of an offset and C indicates a bit of a condition.
 	
     % ============
 	% Bibliography Pages
