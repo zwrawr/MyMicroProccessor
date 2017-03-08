@@ -12,7 +12,7 @@
 % == == == == == == == == == == == == == == == ==
 
 % Use the article class with font size 11pt
-\documentclass[11pt]{article}
+\documentclass[10pt]{article}
 
 % Creates placeholder text (Only needed for this example)
 \usepackage{blindtext}
@@ -220,14 +220,16 @@
 				\lstinputlisting[language={[x86masm]Assembler},title={Machine code - Hex, don't cares replace with 0s}]{code/MachineCodeHex.txt}
                 
      	\subsection{Control Signals}
-
+		
+		Here is a table of all the necessary control signals needed to run the given program on Architecture B.
 		\begin{figure}[ht]
           			\centering
           			\includegraphics[width=1\textwidth]{tables/Q1ControlSignals}
-          			\caption{Stages and control signals}
+          			\caption{Control signals}
          		\end{figure}
 
-                
+\newpage
+
 \section{Question 2}
     	
         Here is a table showing all the control signals need to execute the instruction with the multi-cycle architecture C.
