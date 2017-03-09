@@ -24,7 +24,7 @@ use work.DigEng.all;
 
 entity DataPath_B is
 	GENERIC(
-		data_size : natural := 16,
+		data_size : natural := 16;
 		num_registers : natural := 5
 	);
 	Port ( 
