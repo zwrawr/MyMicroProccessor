@@ -25,6 +25,7 @@ ARCHITECTURE behavior OF DataPath_C_TB IS
 		);
 		PORT(
 			clk 	: IN  	std_logic;
+			
 			R_A 	: IN  	std_logic_vector	(log2(num_registers)-1 downto 0);
 			R_B 	: IN  	std_logic_vector	(log2(num_registers)-1 downto 0);
 			W_EN 	: IN  	std_logic;
@@ -36,6 +37,7 @@ ARCHITECTURE behavior OF DataPath_C_TB IS
 			S 		: IN  	std_logic_vector	(4 downto 1);
 			AL 		: IN  	std_logic_vector	(3 downto 0);
 			SH 		: IN  	std_logic_vector	(log2(data_size)-1 downto 0);
+			
 			PC_plus : OUT  	std_logic_vector	(15 downto 0);
 			Flags 	: OUT  	std_logic_vector	(7 downto 0);
 			M_DA 	: OUT  	std_logic_vector	(data_size-1 downto 0);
