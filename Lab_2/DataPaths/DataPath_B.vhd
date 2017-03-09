@@ -53,7 +53,7 @@ architecture Behavioral of DataPath_B is
 	signal B_data : STD_LOGIC_VECTOR (data_size-1 downto 0);
 	
 	signal B_mux : STD_LOGIC_VECTOR (data_size-1 downto 0);
-	
+
 	signal ALU_out : STD_LOGIC_VECTOR (data_size-1 downto 0);
 
 begin
@@ -63,6 +63,8 @@ begin
 	M_DA <= M_A when s(3) = '1' else ALU_out;
 	
 	reg_in <= ALU_out when s(4) = '0' else M_in;
+
+	M_B <= B_data;
 
 	ALU: entity work.ALU_param 
 	GENERIC MAP(
