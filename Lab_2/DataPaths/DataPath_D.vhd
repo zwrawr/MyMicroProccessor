@@ -38,13 +38,13 @@ architecture Behavioral of DataPath_D is
 	signal A_data : STD_LOGIC_VECTOR (data_size-1 downto 0);
 	signal B_data : STD_LOGIC_VECTOR (data_size-1 downto 0);
 	
-	-- Output of the register on the A and B buses
-	signal A_reg_out : STD_LOGIC_VECTOR (data_size-1 downto 0);
-	signal B_reg_out : STD_LOGIC_VECTOR (data_size-1 downto 0);
-	
 	-- The two multiplexers for A and B
 	signal A_mux : STD_LOGIC_VECTOR (data_size-1 downto 0);
 	signal B_mux : STD_LOGIC_VECTOR (data_size-1 downto 0);
+	
+	-- Output of the register on the A and B buses
+	signal A_reg_out : STD_LOGIC_VECTOR (data_size-1 downto 0);
+	signal B_reg_out : STD_LOGIC_VECTOR (data_size-1 downto 0);
 	
 	-- The inputs to the ALU
 	signal A_ALU : STD_LOGIC_VECTOR (data_size-1 downto 0);
@@ -54,28 +54,39 @@ architecture Behavioral of DataPath_D is
 	signal ALU_out : STD_LOGIC_VECTOR (data_size-1 downto 0);
 	signal ALU_reg_out : STD_LOGIC_VECTOR (data_size-1 downto 0);
 
-	-- The output of the memory in register
+	-- The ALU output after it passes through a second register
+	signal ALU_reg_out_reg_out : STD_LOGIC_VECTOR (data_size-1 downto 0);
+
+	-- Signals for memory registers
 	signal M_in_reg_out : STD_LOGIC_VECTOR (data_size-1 downto 0);
-	
+
 begin
 
 	-- The two multiplexers for A and B
 	A_mux <= A_reg_out when SEL(6) = '0' else reg_in;
 	B_mux <= B_reg_out when SEL(5) = '0' else reg_in;
 
+
 	-- The multiplexers on the input of the ALU
-	A_ALU <= 
-		reg_in when 
-	B_ALU
+	A_ALU <= -- TODO:: Cannot have a one bit select for a 3 input mux
+		ALU_reg_out 	when SEL(2) = "11" else
+		(others => 'U') when SEL(2) = "10" else
+		A_reg_out 		when SEL(2) = "01" else
+		reg_in 			when SEL(2) = "01" else
+		(others => 'U');
+	B_ALU <= -- TODO:: Cannot have a one bit select for a 4 input mux
+		reg_in 			when SEL(1) = "11" else
+		IMM 			when SEL(1) = "10" else
+		B_reg_out 		when SEL(1) = "01" else
+		reg_in 			when SEL(1) = "01" else
+		(others => 'U');
+	
 	
 	-- The address multiplexer for the memory
 	M_DA <= M_A when SEL(3) = '1' else ALU_reg_out;
-	
-	M_out <= B_reg_out;
-	PC_plus <= ALU_reg_out;
-	
+		
 	-- The register write multiplexer
-	reg_in <= ALU_reg_out when s(4) = '0' else M_in_reg_out;
+	reg_in <= ALU_reg_out_reg_out when SEL(4) = '1' else M_in_reg_out;
 
 	-- The register on the A bus
 	A_reg: entity work.Reg Generic Map (data_size => data_size)
@@ -107,6 +118,22 @@ begin
 		clk => clk,
 		data_in => M_in,
 		data_out => M_in_reg_out
+	);
+	
+	-- The second register on the ALU out
+	ALU_reg_out_reg: entity work.Reg Generic Map (data_size => data_size)
+	PORT MAP(
+		clk => clk,
+		data_in => ALU_reg_out,
+		data_out => ALU_reg_out_reg_out
+	);
+	
+	-- The register on the memory read bus
+	M_out_reg: entity work.Reg Generic Map (data_size => data_size)
+	PORT MAP(
+		clk => clk,
+		data_in => B_reg_out,
+		data_out => M_out
 	);
 
 	-- The ALU and shifter from Lab 1
