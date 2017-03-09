@@ -1,4 +1,3 @@
-
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE work.DigEng.ALL;
@@ -13,9 +12,12 @@ ARCHITECTURE behavior OF DataPath_C_TB IS
     -- Constants
 	constant data_size : NATURAL := 16;
 	constant num_registers : NATURAL := 5;
+	
+	-- Clock period definitions
+	constant clk_period : time := 10 ns;
+	constant wait_time 	: time 	:= clk_period;
 
 	-- Component Declaration for the Unit Under Test (UUT)
- 
 	COMPONENT DataPath_C
 		GENERIC(
 			data_size : natural;
@@ -62,10 +64,7 @@ ARCHITECTURE behavior OF DataPath_C_TB IS
 	signal M_DA 	: std_logic_vector	(data_size-1 downto 0);
 	signal M_out 	: std_logic_vector	(data_size-1 downto 0);
 
-	-- Clock period definitions
-	constant clk_period : time := 10 ns;
-	constant wait_time 	: time 	:= clk_period;
-
+	-- Test data definitions
 	type TEST_VECTOR is RECORD
 		 R_A 	: STD_LOGIC_VECTOR(log2(num_registers)-1 downto 0);
 		 R_B 	: std_logic_vector(log2(num_registers)-1 downto 0);
@@ -86,22 +85,28 @@ ARCHITECTURE behavior OF DataPath_C_TB IS
 		 M_DA 	: std_logic_vector(data_size-1 downto 0);
 		 M_out 	: std_logic_vector(data_size-1 downto 0);
 	end RECORD;
-	
-	
 	type TEST_VECTOR_ARRAY is ARRAY(NATURAL RANGE <>) of TEST_VECTOR;
 	
+	-- TODO:: Add some test data.
+	-- Test Data 
 	constant test_vectors : TEST_VECTOR_ARRAY := (
-		-- R_A,	R_B,	W_EN,	W_A,	IMM,	M_A,	M_in,	PC,	S,	AL,	SH,	PC_plus,	flags,	M_DA,	M_out
-		(	),
-		(	)
+		--R_A,		R_B,	W_EN,	W_A,	IMM,				M_A,				M_in,				PC,					S,		AL,		SH,		PC_plus,			flags,		M_DA,				M_out
+		( "---",	"---",	'-',	"---",	"----------------",	"----------------",	"----------------",	"----------------",	"----",	"----",	"----",	"----------------",	"--------",	"----------------",	"----------------" ),
+		( "---",	"---",	'-',	"---",	"----------------",	"----------------",	"----------------",	"----------------",	"----",	"----",	"----",	"----------------",	"--------",	"----------------",	"----------------" )
 	);
 	
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-	uut: DataPath_C PORT MAP (
+	uut: DataPath_C 
+	Generic Map(
+		data_size => data_size,
+		num_registers => num_registers
+	)
+	PORT MAP (
 		clk => clk,
 		
+		-- Inputs
 		R_A => R_A,
 		R_B => R_B,
 		
@@ -116,6 +121,7 @@ BEGIN
 		AL => AL,
 		SH => SH,
 		
+		-- Outputs
 		PC_plus => PC_plus,
 		Flags => Flags,
 		M_DA => M_DA,
@@ -160,18 +166,20 @@ BEGIN
 			-- wait long enough for the Data path to process the inputs
 			wait for wait_time;
 
-			assert flags = test_vectors(i).flags
+			-- Check to see if the out put was what we were expecting
+			-- Have to use std_match() instead of = when comparing meta values like '-'
+			assert std_match(flags, test_vectors(i).flags)
 			report " [ERR!] Test " & integer'image(i)& 
 				" Actual flags did not equal expected flags."&
 				" Actual [ " & to_bstring(flags) & " ]" &
 				" Expected [ " & to_bstring(test_vectors(i).flags) & " ]"
 			severity error;
 			
-			assert std_match(test_vectors(i).M_B, M_B) -- have to use std_match when comparing meta values like '-'
+			assert std_match(test_vectors(i).M_out, M_out) 
 			report " [ERR!] Test " & integer'image(i)& 
 				" Actual value to memory did not equal expected value to memory."&
-				" Actual [ " & u_tostr(M_B) & " ]" &
-				" Expected [ " & u_tostr(test_vectors(i).M_B) & " ]"
+				" Actual [ " & u_tostr(M_out) & " ]" &
+				" Expected [ " & u_tostr(test_vectors(i).M_out) & " ]"
 			severity error;
 			
 			assert std_match(M_DA , test_vectors(i).M_DA)
@@ -181,7 +189,7 @@ BEGIN
 				" Expected [ " & u_tostr(test_vectors(i).M_DA) & " ]"
 			severity error;
 			
-			assert PC_plus = test_vectors(i).PC_plus
+			assert std_match(PC_plus, test_vectors(i).PC_plus)
 			report " [ERR!] Test " & integer'image(i)& 
 				" Actual program counter did not equal expected program counter."&
 				" Actual [ " & u_tostr(PC_plus) & " ]" &
@@ -189,10 +197,12 @@ BEGIN
 			severity error;
 			
 			-- if there were no isses report that the test was successful
-			assert not (flags = test_vectors(i).flags and 
-				std_match(M_B, test_vectors(i).M_B) and 
+			assert not (
+				std_match(flags, test_vectors(i).flags) and 
+				std_match(M_out, test_vectors(i).M_out) and 
 				std_match(M_DA, test_vectors(i).M_DA) and
-				PC_plus = test_vectors(i).PC_plus)
+				std_match(PC_plus, test_vectors(i).PC_plus)
+			)
 			report " [ OK ] Test " & integer'image(i)& " was successful!"
 			severity note;
 
@@ -200,8 +210,8 @@ BEGIN
 
 		end loop;
 		
+		-- End of test
 		wait;
-		
 	end process;
 
 

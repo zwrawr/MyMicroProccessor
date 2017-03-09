@@ -84,7 +84,7 @@ ARCHITECTURE behavior OF DataPathB_TB IS
 	type TEST_VECTOR_ARRAY is ARRAY(NATURAL RANGE <>) of TEST_VECTOR;
 	
 	constant test_vectors : TEST_VECTOR_ARRAY := (
-		--W_EN,	AL,		R_A,		R_B,		W_A,		IMM,						SH,		M_A,						S,			M_in,		flags,		M_B,						M_DA	
+		--W_EN,		AL,		R_A,	R_B,	W_A,	IMM,				SH,		M_A,				S,		M_in,		flags,		M_B,				M_DA	
 		(	'1',	"1000",	"000",	"---",	"001",	"----------------",	"----",	"----------------",	"0--0",	X"0000",	"01010110",	"----------------",	"----------------" ),
 		(	'1',	"1000",	"000",	"---",	"001",	"----------------",	"----",	"----------------",	"0--0",	X"0000",	"01010110",	"----------------",	"----------------" )
 	);
