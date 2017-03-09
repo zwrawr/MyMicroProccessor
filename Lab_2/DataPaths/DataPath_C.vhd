@@ -34,10 +34,13 @@ entity DataPath_C is
 	);
 	Port ( 
 		clk : in  STD_LOGIC;
+		
 		R_A : in  STD_LOGIC_VECTOR (log2(num_registers)-1 downto 0);
 		R_B : in  STD_LOGIC_VECTOR (log2(num_registers)-1 downto 0);
+		
 		W_EN : in  STD_LOGIC;
 		W_A : in  STD_LOGIC_VECTOR (log2(num_registers)-1 downto 0);
+		
 		IMM : in  STD_LOGIC_VECTOR (data_size-1 downto 0);
 		M_A : in  STD_LOGIC_VECTOR (data_size-1 downto 0);
 		M_in : in  STD_LOGIC_VECTOR (data_size-1 downto 0);
@@ -45,6 +48,7 @@ entity DataPath_C is
 		S : in  STD_LOGIC_VECTOR (4 downto 1);
 		AL : in  STD_LOGIC_VECTOR (3 downto 0);
 		SH : in  STD_LOGIC_VECTOR (log2(data_size)-1  downto 0);
+		
 		PC_plus : out  STD_LOGIC_VECTOR (15 downto 0);
 		Flags : out  STD_LOGIC_VECTOR (7 downto 0);
 		M_DA : out  STD_LOGIC_VECTOR (data_size-1 downto 0);

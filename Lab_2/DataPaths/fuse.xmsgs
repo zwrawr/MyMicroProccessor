@@ -5,5 +5,29 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="error" file="HDLCompiler" num="806" delta="unknown" >"E:/University/_Second Year/Computer Architectures/assesment/MyMicroProccessor/Lab_2/DataPaths/DataPath_C_TB.vhd" Line 95: Syntax error near &quot;<arg fmt="%s" index="1">)</arg>&quot;.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="806" delta="unknown" >"E:/University/_Second Year/Computer Architectures/assesment/MyMicroProccessor/Lab_2/DataPaths/DataPath_C_TB.vhd" Line 96: Syntax error near &quot;<arg fmt="%s" index="1">)</arg>&quot;.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="432" delta="unknown" >"E:/University/_Second Year/Computer Architectures/assesment/MyMicroProccessor/Lab_2/DataPaths/DataPath_C_TB.vhd" Line 102: Formal &lt;<arg fmt="%s" index="1">data_size</arg>&gt; has no actual or default value.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="368" delta="unknown" >"E:/University/_Second Year/Computer Architectures/assesment/MyMicroProccessor/Lab_2/DataPaths/DataPath_C_TB.vhd" Line 170: &lt;<arg fmt="%s" index="1">m_b</arg>&gt; is not an element of record type &lt;<arg fmt="%s" index="2">test_vector</arg>&gt;.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="unknown" >"E:/University/_Second Year/Computer Architectures/assesment/MyMicroProccessor/Lab_2/DataPaths/DataPath_C_TB.vhd" Line 173: &lt;<arg fmt="%s" index="1">m_b</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="368" delta="unknown" >"E:/University/_Second Year/Computer Architectures/assesment/MyMicroProccessor/Lab_2/DataPaths/DataPath_C_TB.vhd" Line 174: &lt;<arg fmt="%s" index="1">m_b</arg>&gt; is not an element of record type &lt;<arg fmt="%s" index="2">test_vector</arg>&gt;.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="unknown" >"E:/University/_Second Year/Computer Architectures/assesment/MyMicroProccessor/Lab_2/DataPaths/DataPath_C_TB.vhd" Line 193: &lt;<arg fmt="%s" index="1">m_b</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="854" delta="unknown" >"E:/University/_Second Year/Computer Architectures/assesment/MyMicroProccessor/Lab_2/DataPaths/DataPath_C_TB.vhd" Line 11: Unit &lt;<arg fmt="%s" index="1">behavior</arg>&gt; ignored due to previous errors.
+</msg>
+
 </messages>
 

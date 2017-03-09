@@ -1,30 +1,4 @@
---------------------------------------------------------------------------------
--- Company: 
--- Engineer:
---
--- Create Date:   14:13:39 03/03/2017
--- Design Name:   
--- Module Name:   E:/University/_Second Year/Computer Architectures/assesment/MyMicroProccessor/Lab_2/DataPaths/DataPathB_TB.vhd
--- Project Name:  DataPaths
--- Target Device:  
--- Tool versions:  
--- Description:   
--- 
--- VHDL Test Bench Created by ISE for module: DataPath_B
--- 
--- Dependencies:
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
---
--- Notes: 
--- This testbench has been automatically generated using types std_logic and
--- std_logic_vector for the ports of the unit under test.  Xilinx recommends
--- that these types always be used for the top-level I/O of a design in order
--- to guarantee that the testbench will bind correctly to the post-implementation 
--- simulation model.
---------------------------------------------------------------------------------
+
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE work.DigEng.ALL;
@@ -150,15 +124,12 @@ BEGIN
    end process;
  
 
-   -- Stimulus process
-   stim_proc: process
-   begin		
-      -- hold reset state for 100 ns.
-      wait for 100 ns;	
-
-      wait for clk_period*10;
-
-      -- insert stimulus here
+	-- Stimulus process
+	stim_proc: process
+	begin
+	
+		-- hold reset state for 100 ns.
+		wait for 100 ns;	
 
 		-- run the test for every set of data
 		for i in test_vectors'range loop
@@ -209,9 +180,9 @@ BEGIN
 			wait for wait_time;
 
 		end loop;
-
-
-      wait;
-   end process;
+		
+		wait;
+		
+	end process;
 
 END;
