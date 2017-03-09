@@ -12,7 +12,7 @@ ARCHITECTURE behavior OF DataPathB_TB IS
 
 	-- Constants
 	constant data_size : NATURAL := 16;
-	constant num_registers : NATURAL := 5;
+	constant num_registers : NATURAL := 32;
 
 	-- Component Declaration for the Unit Under Test (UUT)
  
@@ -84,9 +84,12 @@ ARCHITECTURE behavior OF DataPathB_TB IS
 	type TEST_VECTOR_ARRAY is ARRAY(NATURAL RANGE <>) of TEST_VECTOR;
 	
 	constant test_vectors : TEST_VECTOR_ARRAY := (
-		--W_EN,		AL,		R_A,	R_B,	W_A,	IMM,				SH,		M_A,				S,		M_in,		flags,		M_B,				M_DA	
-		(	'1',	"1000",	"000",	"---",	"001",	"----------------",	"----",	"----------------",	"0--0",	X"0000",	"01010110",	"----------------",	"----------------" ),
-		(	'1',	"1000",	"000",	"---",	"001",	"----------------",	"----",	"----------------",	"0--0",	X"0000",	"01010110",	"----------------",	"----------------" )
+		--W_EN,		AL,		R_A,		R_B,		W_A,		IMM,				SH,		M_A,				S,		M_in,				flags,		M_B,				M_DA	
+		(	'1',	"1000",	"00000",	"-----",	"00001",	"----------------",	"----",	"----------------",	"0---",	"----------------",	"01010110",	"----------------",	"----------------"	),
+		(	'1',	"1010",	"00000",	"-----",	"00010",	X"0005",			"----",	"----------------",	"0--1",	"----------------",	"01010010",	"----------------",	"----------------"	),
+		(	'1',	"1100",	"00001",	"-----",	"00011",	"----------------",	"0011",	"----------------",	"0---",	"----------------",	"01010010",	"----------------",	"----------------"	),
+		(	'0',	"0000",	"00011",	"00010",	"-----",	"----------------",	"----",	"----------------",	"0---",	"----------------",	"01010010",	X"0005",			X"0008"				),
+		(	'1',	"----",	"-----",	"-----",	"00101",	"----------------",	"----",	X"1f1f",			"11--",	X"CCCC",			"--------",	"----------------",	X"1f1f"				)
 	);
  
 BEGIN
@@ -149,32 +152,34 @@ BEGIN
 			-- wait long enough for the Data path to process the inputs
 			wait for wait_time;
 
-			assert flags = test_vectors(i).flags
-			report " [ERR!] Test " & integer'image(i)& 
+
+			assert std_match(flags, test_vectors(i).flags)
+			report lf & " [ERR!] Test " & integer'image(i)& lf &
 				" Actual flags did not equal expected flags."&
 				" Actual [ " & to_bstring(flags) & " ]" &
 				" Expected [ " & to_bstring(test_vectors(i).flags) & " ]"
 			severity error;
 			
 			assert std_match(test_vectors(i).M_B, M_B) -- have to use std_match when comparing meta values like '-'
-			report " [ERR!] Test " & integer'image(i)& 
+			report lf &" [ERR!] Test " & integer'image(i)& lf &
 				" Actual value to memory did not equal expected value to memory."&
 				" Actual [ " & u_tostr(M_B) & " ]" &
 				" Expected [ " & u_tostr(test_vectors(i).M_B) & " ]"
 			severity error;
 			
 			assert std_match(M_DA , test_vectors(i).M_DA)
-			report " [ERR!] Test " & integer'image(i)& 
+			report lf &" [ERR!] Test " & integer'image(i)& lf &
 				" Actual memory address did not equal expected memory address."&
 				" Actual [ " & u_tostr(M_DA) & " ]" &
 				" Expected [ " & u_tostr(test_vectors(i).M_DA) & " ]"
 			severity error;
 			
 			-- if there were no isses report that the test was successful
-			assert not (flags = test_vectors(i).flags and 
+			assert not (
+				std_match(flags, test_vectors(i).flags) and 
 				std_match(M_B, test_vectors(i).M_B) and 
 				std_match(M_DA, test_vectors(i).M_DA))
-			report " [ OK ] Test " & integer'image(i)& " was successful!"
+			report lf &" [ OK ] Test " & integer'image(i)& " was successful!" 
 			severity note;
 
 			wait for wait_time;

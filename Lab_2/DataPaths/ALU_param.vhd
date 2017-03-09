@@ -60,9 +60,9 @@ begin
 		-- Main ALU multiplexer for each possible command
 		O_itrn <= 
 			A_itrn 					when ctrl = "0000" else 	-- Output A
-			A_itrn and B_itrn 	when ctrl = "0100" else		-- Output A & B
+			A_itrn and B_itrn 		when ctrl = "0100" else		-- Output A & B
 			A_itrn or B_itrn 		when ctrl = "0101" else		-- Output A || B
-			A_itrn xor B_itrn 	when ctrl = "0110" else		-- Output A xor B
+			A_itrn xor B_itrn 		when ctrl = "0110" else		-- Output A xor B
 			not A_itrn 				when ctrl = "0111" else		-- Output not A
 			A_itrn + 1 				when ctrl = "1000" else		-- Output A + 1
 			A_itrn - 1 				when ctrl = "1001" else		-- Output A - 1

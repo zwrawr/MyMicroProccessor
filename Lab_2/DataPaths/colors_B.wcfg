@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="E:/University/_Second Year/Computer Architectures/assesment/MyMicroProccessor/Lab_2/DataPaths/DataPathB_TB_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="datapathb_tb" />
+            <top_module name="digeng" />
+            <top_module name="easyprint" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="15" />
+   <wvobject fp_name="/datapathb_tb/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapathb_tb/r_a" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r_a[4:0]</obj_property>
+      <obj_property name="ObjectShortName">r_a[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapathb_tb/r_b" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r_b[4:0]</obj_property>
+      <obj_property name="ObjectShortName">r_b[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapathb_tb/w_en" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">w_en</obj_property>
+      <obj_property name="ObjectShortName">w_en</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff0000</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapathb_tb/w_a" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">w_a[4:0]</obj_property>
+      <obj_property name="ObjectShortName">w_a[4:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#800000</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapathb_tb/imm" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">imm[15:0]</obj_property>
+      <obj_property name="ObjectShortName">imm[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapathb_tb/m_a" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">m_a[15:0]</obj_property>
+      <obj_property name="ObjectShortName">m_a[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapathb_tb/m_in" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">m_in[15:0]</obj_property>
+      <obj_property name="ObjectShortName">m_in[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapathb_tb/s" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">s[4:1]</obj_property>
+      <obj_property name="ObjectShortName">s[4:1]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapathb_tb/al" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">al[3:0]</obj_property>
+      <obj_property name="ObjectShortName">al[3:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapathb_tb/sh" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">sh[3:0]</obj_property>
+      <obj_property name="ObjectShortName">sh[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapathb_tb/flags" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">flags[7:0]</obj_property>
+      <obj_property name="ObjectShortName">flags[7:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapathb_tb/m_b" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">m_b[15:0]</obj_property>
+      <obj_property name="ObjectShortName">m_b[15:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapathb_tb/m_da" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">m_da[15:0]</obj_property>
+      <obj_property name="ObjectShortName">m_da[15:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="group47" type="group">
+      <obj_property name="label">Registers</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/datapathb_tb/uut/Registers/addr_a" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">addr_a[4:0]</obj_property>
+         <obj_property name="ObjectShortName">addr_a[4:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/datapathb_tb/uut/Registers/addr_b" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">addr_b[4:0]</obj_property>
+         <obj_property name="ObjectShortName">addr_b[4:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/datapathb_tb/uut/Registers/addr_c" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">addr_c[4:0]</obj_property>
+         <obj_property name="ObjectShortName">addr_c[4:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/datapathb_tb/uut/Registers/data_in" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">data_in[15:0]</obj_property>
+         <obj_property name="ObjectShortName">data_in[15:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/datapathb_tb/uut/Registers/a_out" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">a_out[15:0]</obj_property>
+         <obj_property name="ObjectShortName">a_out[15:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/datapathb_tb/uut/Registers/b_out" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">b_out[15:0]</obj_property>
+         <obj_property name="ObjectShortName">b_out[15:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>
