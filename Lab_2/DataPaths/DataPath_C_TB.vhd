@@ -11,11 +11,10 @@ ARCHITECTURE behavior OF DataPath_C_TB IS
  
     -- Constants
 	constant data_size : NATURAL := 16;
-	constant num_registers : NATURAL := 5;
+	constant num_registers : NATURAL := 32;
 	
 	-- Clock period definitions
 	constant clk_period : time := 10 ns;
-	constant wait_time 	: time 	:= clk_period;
 
 	-- Component Declaration for the Unit Under Test (UUT)
 	COMPONENT DataPath_C
@@ -92,9 +91,11 @@ ARCHITECTURE behavior OF DataPath_C_TB IS
 	-- TODO:: Add some test data.
 	-- Test Data 
 	constant test_vectors : TEST_VECTOR_ARRAY := (
-		--R_A,		R_B,	W_EN,	W_A,	IMM,				M_A,				M_in,				PC,					S,		AL,		SH,		PC_plus,			flags,		M_DA,				M_out
-		( "---",	"---",	'-',	"---",	"----------------",	"----------------",	"----------------",	"----------------",	"----",	"----",	"----",	"----------------",	"--------",	"----------------",	"----------------" ),
-		( "---",	"---",	'-',	"---",	"----------------",	"----------------",	"----------------",	"----------------",	"----",	"----",	"----",	"----------------",	"--------",	"----------------",	"----------------" )
+		--R_A,		R_B,		W_EN,	W_A,		IMM,				M_A,				M_in,				PC,			S,		AL,		SH,		PC_plus,			flags,		M_DA,				M_out
+		( "-----",	"-----",	'0',	"-----",	"----------------",	"----------------",	"----------------",	X"00FF",	"--1-",	"1000",	"----",	"----------------",	"01010110",	"----------------",	"----------------" ),
+		( "00000",	"-----",	'0',	"-----",	"----------------",	"----------------",	"----------------",	X"00FF",	"----",	"----",	"----",	X"0100",			"--------",	"----------------",	"----------------" ),
+		( "-----",	"-----",	'0',	"-----",	"----------------",	"----------------",	"----------------",	X"00FF",	"--0-",	"1000",	"----",	"----------------",	"01010110",	"----------------",	"----------------" ),
+		( "-----",	"-----",	'1',	"00001",	"----------------",	"----------------",	"----------------",	X"00FF",	"----",	"----",	"----",	"----------------",	"--------",	"----------------",	"----------------" )
 	);
 	
 BEGIN
@@ -146,7 +147,8 @@ BEGIN
       
 		-- hold reset state for 100 ns.
 		wait for 100 ns;	
-
+		wait until rising_edge(clk);
+		
 		-- run the test for every set of data
 		for i in test_vectors'range loop
 			
@@ -166,11 +168,11 @@ BEGIN
 			SH <= test_vectors(i).SH;
 
 			-- wait long enough for the Data path to process the inputs
-			wait for wait_time;
+			wait for clk_period/2;
 
 			-- Check to see if the out put was what we were expecting
 			-- Have to use std_match() instead of = when comparing meta values like '-'
-			assert std_match(flags, test_vectors(i).flags)
+			assert std_match(test_vectors(i).flags, flags)
 			report " [ERR!] Test " & integer'image(i)& 
 				" Actual flags did not equal expected flags."&
 				" Actual [ " & to_bstring(flags) & " ]" &
@@ -208,7 +210,7 @@ BEGIN
 			report " [ OK ] Test " & integer'image(i)& " was successful!"
 			severity note;
 
-			wait for wait_time;
+			wait for clk_period/2;
 
 		end loop;
 		

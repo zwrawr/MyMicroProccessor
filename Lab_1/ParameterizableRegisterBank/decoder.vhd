@@ -28,16 +28,19 @@ entity decoder is
 end decoder;
 
 architecture Behavioral of decoder is
+		signal selected : integer := 0;
 begin
 
 	-- decodes the addresses
 	process(addr, en) is
 	begin
-	
+		
+		selected <= to_integer(unsigned(addr));
+		
 		-- loop over every bit in the output
 		for i in 0 to num_reg-1 loop
 			-- if it this bit corrosponds to the input address set it high otherwise set it low.
-         if (i = to_integer(unsigned(addr)) and en = '1') then
+         if (i = selected and en = '1') then
            enables(i) <= '1';
          else
            enables(i) <= '0';

@@ -13,21 +13,21 @@
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="16" />
+   <WVObjectSize size="18" />
    <wvobject fp_name="/datapath_c_tb/clk" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_c_tb/r_a" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">r_a[2:0]</obj_property>
-      <obj_property name="ObjectShortName">r_a[2:0]</obj_property>
+      <obj_property name="ElementShortName">r_a[4:0]</obj_property>
+      <obj_property name="ObjectShortName">r_a[4:0]</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
       <obj_property name="CustomSignalColor">#ff00ff</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_c_tb/r_b" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">r_b[2:0]</obj_property>
-      <obj_property name="ObjectShortName">r_b[2:0]</obj_property>
+      <obj_property name="ElementShortName">r_b[4:0]</obj_property>
+      <obj_property name="ObjectShortName">r_b[4:0]</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
       <obj_property name="CustomSignalColor">#ff00ff</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
@@ -39,8 +39,8 @@
       <obj_property name="CustomSignalColor">#00ffff</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_c_tb/w_a" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">w_a[2:0]</obj_property>
-      <obj_property name="ObjectShortName">w_a[2:0]</obj_property>
+      <obj_property name="ElementShortName">w_a[4:0]</obj_property>
+      <obj_property name="ObjectShortName">w_a[4:0]</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
       <obj_property name="CustomSignalColor">#00ffff</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
@@ -83,13 +83,6 @@
       <obj_property name="UseCustomSignalColor">true</obj_property>
       <obj_property name="CustomSignalColor">#ff0000</obj_property>
    </wvobject>
-   <wvobject fp_name="/datapath_c_tb/pc_plus" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">pc_plus[15:0]</obj_property>
-      <obj_property name="ObjectShortName">pc_plus[15:0]</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-      <obj_property name="CustomSignalColor">#ffa500</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
    <wvobject fp_name="/datapath_c_tb/flags" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">flags[7:0]</obj_property>
       <obj_property name="ObjectShortName">flags[7:0]</obj_property>
@@ -109,5 +102,22 @@
       <obj_property name="UseCustomSignalColor">true</obj_property>
       <obj_property name="CustomSignalColor">#ffa500</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_c_tb/uut/alu_out" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">alu_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_out[15:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_c_tb/uut/alu_reg_out" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">alu_reg_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_reg_out[15:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_c_tb/pc_plus" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pc_plus[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_plus[15:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ffa500</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
 </wave_config>
