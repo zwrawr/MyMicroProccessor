@@ -7,17 +7,29 @@ entity Reg is
 	);
 	Port ( 
 		clk : in  STD_LOGIC;
+		rst : in STD_LOGIC;
+		en : in STD_LOGIC;
 		data_in : in  STD_LOGIC_VECTOR (data_size-1 downto 0);
 		data_out : out  STD_LOGIC_VECTOR (data_size-1 downto 0)
 	);
 end Reg;
 
 architecture Behavioral of Reg is
-	signal internal : STD_LOGIC_VECTOR (data_size-1 downto 0);
 begin
-
-	internal <= data_in when clk = '1' else internal;
-	data_out <= internal;
+	
+	process(clk)
+	begin
+	
+		if (rising_edge(clk)) then
+			if (rst = '1') then
+				data_out <= (others => '0');
+			elsif (en = '1') then
+				data_out <= data_in;
+			end if;
+		end if;
+		
+	end process;
+	
 	
 end Behavioral;
 

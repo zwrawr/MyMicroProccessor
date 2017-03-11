@@ -10,6 +10,8 @@ entity DataPath_C is
 	);
 	Port ( 
 		clk : in  STD_LOGIC;
+		rst : in STD_LOGIC;
+		en : in STD_LOGIC;
 		
 		-- Inputs
 		R_A : in  STD_LOGIC_VECTOR (log2(num_registers)-1 downto 0);
@@ -76,6 +78,8 @@ begin
 	A_reg: entity work.Reg Generic Map (data_size => data_size)
 	PORT MAP(
 		clk => clk,
+		rst => rst,
+		en => en,
 		data_in => A_data,
 		data_out => A_reg_out
 	);
@@ -84,6 +88,8 @@ begin
 	B_reg: entity work.Reg Generic Map (data_size => data_size)
 	PORT MAP(
 		clk => clk,
+		rst => rst,
+		en => en,
 		data_in => B_data,
 		data_out => B_reg_out
 	);
@@ -92,6 +98,8 @@ begin
 	ALU_reg: entity work.Reg Generic Map (data_size => data_size)
 	PORT MAP(
 		clk => clk,
+		rst => rst,
+		en => en,
 		data_in => ALU_out,
 		data_out => ALU_reg_out
 	);
@@ -100,6 +108,8 @@ begin
 	M_in_reg: entity work.Reg Generic Map (data_size => data_size)
 	PORT MAP(
 		clk => clk,
+		rst => rst,
+		en => en,
 		data_in => M_in,
 		data_out => M_in_reg_out
 	);

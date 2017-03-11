@@ -24,7 +24,9 @@ ARCHITECTURE behavior OF DataPath_C_TB IS
 		);
 		PORT(
 			clk 	: IN  	std_logic;
-			
+			rst 	: IN  	std_logic;
+			en 	: IN  	std_logic;
+
 			R_A 	: IN  	std_logic_vector	(log2(num_registers)-1 downto 0);
 			R_B 	: IN  	std_logic_vector	(log2(num_registers)-1 downto 0);
 			W_EN 	: IN  	std_logic;
@@ -47,6 +49,9 @@ ARCHITECTURE behavior OF DataPath_C_TB IS
 
 	--Inputs
 	signal clk 	: std_logic 											:= '0';
+	signal rst 	: std_logic 											:= '1';
+	signal en 	: std_logic 											:= '0';
+	
 	signal R_A 	: std_logic_vector	(log2(num_registers)-1 downto 0)	:= (others => '0');
 	signal R_B 	: std_logic_vector	(log2(num_registers)-1 downto 0)	:= (others => '0');
 	signal W_EN	: std_logic 											:= '0';
@@ -124,7 +129,7 @@ ARCHITECTURE behavior OF DataPath_C_TB IS
 		-- brneq R2, 010F
 		( "-----",	"-----",	'0',	"-----",	"----------------",	"----------------",	"----------------",	X"0104",	"--1-",	"1000",	"----",	"----------------",	"01010010",	"----------------",	"----------------" ),
 		( "00010",	"00000",	'0',	"-----",	X"010f",			"----------------",	"----------------",	X"0104",	"--11",	"1010",	"----",	X"0105",			"01010010",	X"1f1f",			"----------------" ),
-		( "-----",	"-----",	'0',	"-----",	"----------------",	"----------------",	"----------------",	X"0104",	"--00",	"1010",	"----",	X"0214",			"------10",	"----------------",	"----------------" )
+		( "-----",	"-----",	'0',	"-----",	"----------------",	"----------------",	"----------------",	X"0104",	"--00",	"1010",	"----",	X"0213",			"------10",	"----------------",	"----------------" )
 
 	);
 	
@@ -138,6 +143,8 @@ BEGIN
 	)
 	PORT MAP (
 		clk => clk,
+		rst => rst,
+		en => en,
 		
 		-- Inputs
 		R_A => R_A,
@@ -178,6 +185,9 @@ BEGIN
 		-- hold reset state for 100 ns.
 		wait for 100 ns;	
 		
+		rst <= '0';
+		en <= '1';
+		wait for 2*clk_period;
 		-- sync up to the falling edge of the clock
 		-- wait until falling_edge(clk);
 

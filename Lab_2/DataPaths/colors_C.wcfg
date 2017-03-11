@@ -113,35 +113,41 @@
    <wvobject fp_name="/datapath_c_tb/uut/b_data" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">b_data[15:0]</obj_property>
       <obj_property name="ObjectShortName">b_data[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_c_tb/uut/a_data" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">a_data[15:0]</obj_property>
       <obj_property name="ObjectShortName">a_data[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_c_tb/uut/a_reg_out" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">a_reg_out[15:0]</obj_property>
       <obj_property name="ObjectShortName">a_reg_out[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_c_tb/uut/b_reg_out" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">b_reg_out[15:0]</obj_property>
       <obj_property name="ObjectShortName">b_reg_out[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_c_tb/uut/a_mux" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">a_mux[15:0]</obj_property>
       <obj_property name="ObjectShortName">a_mux[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_c_tb/uut/b_mux" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">b_mux[15:0]</obj_property>
       <obj_property name="ObjectShortName">b_mux[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_c_tb/uut/alu_out" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">alu_out[15:0]</obj_property>
       <obj_property name="ObjectShortName">alu_out[15:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_c_tb/uut/alu_reg_out" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">alu_reg_out[15:0]</obj_property>
       <obj_property name="ObjectShortName">alu_reg_out[15:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
 </wave_config>
