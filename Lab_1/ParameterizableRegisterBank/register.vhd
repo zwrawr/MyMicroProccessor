@@ -29,7 +29,7 @@ end param_reg;
 architecture Behavioral of param_reg is
 begin
 
-	reg_proc : process (clk) is
+	reg_proc : process (clk, load) is
 	begin
 		
 		-- synchronously write data_in to data_out if load is high
