@@ -29,10 +29,7 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE work.DigEng.ALL;
 USE work.easyprint.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
+USE ieee.numeric_std.ALL;
  
 ENTITY DataPath_D_TB IS
 END DataPath_D_TB;
@@ -101,34 +98,39 @@ ARCHITECTURE behavior OF DataPath_D_TB IS
    
    	-- Test data definitions
 	type TEST_VECTOR is RECORD
-		 R_A 	: STD_LOGIC_VECTOR(log2(num_registers)-1 downto 0);
-		 R_B 	: std_logic_vector(log2(num_registers)-1 downto 0);
-		 
-		 W_EN 	: std_logic;
-		 W_A 	: std_logic_vector(log2(num_registers)-1 downto 0);
+		R_A 	: STD_LOGIC_VECTOR(log2(num_registers)-1 downto 0);
+		R_B 	: std_logic_vector(log2(num_registers)-1 downto 0);
 
-		 IMM 	: std_logic_vector(data_size-1 downto 0);
-		 M_A 	: std_logic_vector(data_size-1 downto 0);
-		 M_in 	: std_logic_vector(data_size-1 downto 0);
-		 SEL 	: std_logic_vector(7 downto 0);
-		 AL 	: std_logic_vector(3 downto 0);
-		 SH 	: std_logic_vector(log2(data_size)-1 downto 0);
-		 OEN	: std_logic;
+		W_EN 	: std_logic;
+		W_A 	: std_logic_vector(log2(num_registers)-1 downto 0);
+
+		IMM 	: std_logic_vector(data_size-1 downto 0);
+		M_A 	: std_logic_vector(data_size-1 downto 0);
+		M_in 	: std_logic_vector(data_size-1 downto 0);
+		SEL 	: std_logic_vector(7 downto 0);
+		AL 		: std_logic_vector(3 downto 0);
+		SH 		: std_logic_vector(log2(data_size)-1 downto 0);
+		OEN		: std_logic;
+
+		Flags 	: std_logic_vector(7 downto 0);
+		M_DA 	: std_logic_vector(data_size-1 downto 0);
+		M_out 	: std_logic_vector(data_size-1 downto 0);
 	end RECORD;
+	
 	type TEST_VECTOR_ARRAY is ARRAY(NATURAL RANGE <>) of TEST_VECTOR;
 	
 	-- Test Data 
 	constant test_vectors : TEST_VECTOR_ARRAY := (
-	--R_A,		R_B,		W_EN,	W_A,		IMM,				M_A,				M_in,				SEL,		AL,		SH,		OEN
-	( "00000",	"-----",	'0',	"-----",	"----------------",	"----------------",	"----------------",	"0-------",	"----",	"----",	'0' ),
-	( "00000",	"-----",	'0',	"-----",	"----------------",	"----------------",	"----------------",	"0---01--",	"1000",	"----",	'0' ),
-	( "-----",	"-----",	'0',	"-----",			   X"0005", "----------------", "----------------", "----0110", "1010", "----",	'0' ),
-	( "-----",	"-----",	'1',	"00001",	"----------------", "----------------", "----------------", "--1-----", "----", "----",	'0' ),
-	( "-----",  "-----", 	'1',	"00010",	"----------------", "----------------", "----------------", "-11-11--", "1100", "0011",	'0' ),
-	( "-----",	"-----",	'0',	"-----",	"----------------",	"----------------", "----------------", "--1-11--", "0000", "----",	'0' ),
-	( "-----",	"-----",	'0',	"-----",	"----------------", "----------------", "----------------", "---0----", "----", "----",	'1' ),
-	( "-----", 	"-----", 	'0', 	"-----",	"----------------", X"1F1F",			X"CCCC",			"---1----", "----", "----",	'0' ),
-	( "-----",	"-----",	'1',	"00101",	"----------------", "----------------", "----------------", "--0-----", "----", "----",	'0' )
+	--R_A,		R_B,		W_EN,	W_A,		IMM,				M_A,				M_in,				SEL,		AL,		SH,		OEN,	Flags,		M_DA,				M_out
+	( "00000",	"-----",	'0',	"-----",	"----------------",	"----------------",	"----------------",	"0-------",	"----",	"----",	'0',	"--------",	"----------------",	"----------------" ),
+	( "00000",	"-----",	'0',	"-----",	"----------------",	"----------------",	"----------------",	"0---01--",	"1000",	"----",	'0',	"01010110",	"----------------",	"----------------" ),
+	( "-----",	"-----",	'0',	"-----",	X"0005",			"----------------", "----------------", "----0110", "1010", "----",	'0',	"01010010",	"----------------",	"----------------" ),
+	( "-----",	"-----",	'1',	"00001",	"----------------", "----------------", "----------------", "--1-----", "----", "----",	'0',	"--------",	"----------------",	"----------------" ),
+	( "-----",  "-----", 	'1',	"00010",	"----------------", "----------------", "----------------", "-11-00--", "1100", "0011",	'0',	"01010010",	"----------------",	"----------------" ),
+	( "-----",	"-----",	'0',	"-----",	"----------------",	"----------------", "----------------", "--1-11--", "0000", "----",	'0',	"01010010",	"----------------",	"----------------" ),
+	( "-----",	"-----",	'1',	"00011",	"----------------", "----------------", "----------------", "---0----", "----", "----",	'1',	"--------",	X"0008",			"----------------" ),
+	( "-----", 	"-----", 	'0', 	"-----",	"----------------", X"1F1F",			X"CCCC",			"---1----", "----", "----",	'0',	"--------",	X"1f1f",			X"0005"			   ),
+	( "-----",	"-----",	'1',	"00101",	"----------------", "----------------", "----------------", "--0-----", "----", "----",	'0',	"--------",	"----------------",	"----------------" )
 	
 	);
  
@@ -203,8 +205,37 @@ BEGIN
 			
 			OEN <= test_vectors(i).OEN;
 			
-			--wait for clk_period/2;
 			wait until falling_edge(clk);
+			
+			-- Test to make sure the output were ehat we were expecting
+			assert std_match(Flags, test_vectors(i).Flags)
+			report lf & " [ERR!] Test " & integer'image(i)& lf &
+				" Actual flags did not equal expected flags."&
+				" Actual [ " & to_bstring(Flags) & " ]" &
+				" Expected [ " & to_bstring(test_vectors(i).Flags) & " ]"
+			severity error;
+			
+			assert std_match(test_vectors(i).M_out, M_out)
+			report lf &" [ERR!] Test " & integer'image(i)& lf &
+				" Actual value to memory did not equal expected value to memory."&
+				" Actual [ " & u_tostr(M_out) & " ]" &
+				" Expected [ " & u_tostr(test_vectors(i).M_out) & " ]"
+			severity error;
+			
+			assert std_match(M_DA , test_vectors(i).M_DA)
+			report lf &" [ERR!] Test " & integer'image(i)& lf &
+				" Actual memory address did not equal expected memory address."&
+				" Actual [ " & u_tostr(M_DA) & " ]" &
+				" Expected [ " & u_tostr(test_vectors(i).M_DA) & " ]"
+			severity error;
+			
+			-- if there were no isses report that the test was successful
+			assert not (
+				std_match(Flags, test_vectors(i).Flags) and 
+				std_match(M_out, test_vectors(i).M_out) and 
+				std_match(M_DA, test_vectors(i).M_DA))
+			report lf &" [ OK ] Test " & integer'image(i)& " was successful!" 
+			severity note;
 
 		end loop;
 		

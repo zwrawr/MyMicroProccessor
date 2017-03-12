@@ -74,13 +74,13 @@ begin
 		ALU_reg_out 	when SEL(3 downto 2) = "11" else
 		(others => 'U') when SEL(3 downto 2) = "10" else
 		A_reg_out 		when SEL(3 downto 2) = "01" else
-		reg_in 			when SEL(3 downto 2) = "01" else
+		reg_in 			when SEL(3 downto 2) = "00" else
 		(others => 'U');
 	B_ALU <=
-		reg_in 			when SEL(1 downto 0) = "11" else
+		ALU_reg_out 	when SEL(1 downto 0) = "11" else
 		IMM 			when SEL(1 downto 0) = "10" else
 		B_reg_out 		when SEL(1 downto 0) = "01" else
-		reg_in 			when SEL(1 downto 0) = "01" else
+		reg_in 			when SEL(1 downto 0) = "00" else
 		(others => 'U');
 	
 	
