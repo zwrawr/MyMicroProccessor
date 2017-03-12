@@ -7,7 +7,7 @@ use work.DigEng.All;
 entity DataPath_D is
 	Generic(
 		data_size : natural := 16;
-		num_registers : natural := 5
+		num_registers : natural := 32
 	);
 	Port ( 
 		clk : in  STD_LOGIC;
@@ -65,8 +65,8 @@ architecture Behavioral of DataPath_D is
 begin
 
 	-- The two multiplexers for A and B
-	A_mux <= A_reg_out when SEL(7) = '0' else reg_in;
-	B_mux <= B_reg_out when SEL(6) = '0' else reg_in;
+	A_mux <= A_data when SEL(7) = '0' else reg_in;
+	B_mux <= B_data when SEL(6) = '0' else reg_in;
 
 
 	-- The multiplexers on the input of the ALU

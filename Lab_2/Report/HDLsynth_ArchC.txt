@@ -1,0 +1,104 @@
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <DataPath_C>.
+    Related source file is "E:\University\_Second Year\Computer Architectures\assesment\MyMicroProccessor\Lab_2\DataPaths - RegBankAlt\DataPath_C.vhd".
+        data_size = 16
+        num_registers = 32
+    Summary:
+	inferred   4 Multiplexer(s).
+Unit <DataPath_C> synthesized.
+
+Synthesizing Unit <Reg>.
+    Related source file is "E:\University\_Second Year\Computer Architectures\assesment\MyMicroProccessor\Lab_2\DataPaths - RegBankAlt\Reg.vhd".
+        data_size = 16
+    Found 16-bit register for signal <data_out>.
+    Summary:
+	inferred  16 D-type flip-flop(s).
+Unit <Reg> synthesized.
+
+Synthesizing Unit <ALU_param>.
+    Related source file is "E:\University\_Second Year\Computer Architectures\assesment\MyMicroProccessor\Lab_2\DataPaths - RegBankAlt\ALU_param.vhd".
+        N = 16
+    Found 16-bit adder for signal <A_itrn[15]_B_itrn[15]_add_27_OUT> created at line 69.
+    Found 16-bit adder for signal <A_itrn[15]_GND_7_o_add_31_OUT> created at line 1253.
+    Found 16-bit subtractor for signal <A_itrn[15]_B_itrn[15]_sub_26_OUT<15:0>> created at line 70.
+    Found 16-bit subtractor for signal <A_itrn[15]_GND_7_o_sub_30_OUT<15:0>> created at line 1320.
+    Found 16-bit shifter rotate right for signal <A_itrn[15]_X_itrn[30]_rotate_right_17_OUT> created at line 3021
+    Found 16-bit shifter rotate left for signal <A_itrn[15]_X_itrn[30]_rotate_left_19_OUT> created at line 3012
+    Found 16-bit shifter arithmetic right for signal <A_itrn[15]_X_itrn[30]_shift_right_21_OUT> created at line 2982
+    Found 16-bit shifter logical left for signal <A_itrn[15]_X_itrn[30]_shift_left_23_OUT> created at line 2973
+    Found 16-bit 13-to-1 multiplexer for signal <O_itrn> created at line 42.
+    Found 16-bit comparator greater for signal <flags<3>> created at line 99
+    Found 16-bit comparator greater for signal <flags<4>> created at line 100
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   2 Comparator(s).
+	inferred  16 Multiplexer(s).
+	inferred   4 Combinational logic shifter(s).
+Unit <ALU_param> synthesized.
+
+Synthesizing Unit <regbank>.
+    Related source file is "E:\University\_Second Year\Computer Architectures\assesment\MyMicroProccessor\Lab_2\DataPaths - RegBankAlt\otherRegBank.vhd".
+    Found 16-bit register for signal <REG02>.
+    Found 16-bit register for signal <REG03>.
+    Found 16-bit register for signal <REG04>.
+    Found 16-bit register for signal <REG05>.
+    Found 16-bit register for signal <REG06>.
+    Found 16-bit register for signal <REG07>.
+    Found 16-bit register for signal <REG08>.
+    Found 16-bit register for signal <REG09>.
+    Found 16-bit register for signal <REG10>.
+    Found 16-bit register for signal <REG11>.
+    Found 16-bit register for signal <REG12>.
+    Found 16-bit register for signal <REG13>.
+    Found 16-bit register for signal <REG14>.
+    Found 16-bit register for signal <REG15>.
+    Found 16-bit register for signal <REG16>.
+    Found 16-bit register for signal <REG17>.
+    Found 16-bit register for signal <REG18>.
+    Found 16-bit register for signal <REG19>.
+    Found 16-bit register for signal <REG20>.
+    Found 16-bit register for signal <REG21>.
+    Found 16-bit register for signal <REG22>.
+    Found 16-bit register for signal <REG23>.
+    Found 16-bit register for signal <REG24>.
+    Found 16-bit register for signal <REG25>.
+    Found 16-bit register for signal <REG26>.
+    Found 16-bit register for signal <REG27>.
+    Found 16-bit register for signal <REG28>.
+    Found 16-bit register for signal <REG29>.
+    Found 16-bit register for signal <REG30>.
+    Found 16-bit register for signal <REG31>.
+    Found 16-bit register for signal <REG01>.
+    Found 16-bit 32-to-1 multiplexer for signal <A> created at line 30.
+    Found 16-bit 32-to-1 multiplexer for signal <B> created at line 31.
+    Summary:
+	inferred 496 D-type flip-flop(s).
+	inferred   2 Multiplexer(s).
+Unit <regbank> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 1
+ 16-bit addsub                                         : 1
+# Registers                                            : 35
+ 16-bit register                                       : 35
+# Comparators                                          : 2
+ 16-bit comparator greater                             : 2
+# Multiplexers                                         : 22
+ 1-bit 2-to-1 multiplexer                              : 6
+ 16-bit 2-to-1 multiplexer                             : 14
+ 16-bit 32-to-1 multiplexer                            : 2
+# Logic shifters                                       : 4
+ 16-bit shifter arithmetic right                       : 1
+ 16-bit shifter logical left                           : 1
+ 16-bit shifter rotate left                            : 1
+ 16-bit shifter rotate right                           : 1
+# Xors                                                 : 1
+ 16-bit xor2                                           : 1
+
+=========================================================================

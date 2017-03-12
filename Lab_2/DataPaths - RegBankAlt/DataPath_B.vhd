@@ -25,7 +25,7 @@ use work.DigEng.all;
 entity DataPath_B is
 	GENERIC(
 		data_size : natural := 16;
-		num_registers : natural := 5
+		num_registers : natural := 32
 	);
 	Port ( 
 		R_A : in  STD_LOGIC_VECTOR (log2(num_registers)-1 downto 0);

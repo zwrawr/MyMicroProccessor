@@ -6,7 +6,7 @@ use work.DigEng.ALL;
 entity DataPath_C is
 	GENERIC(
 		data_size : natural := 16; 
-		num_registers : natural := 5
+		num_registers : natural := 32
 	);
 	Port ( 
 		clk : in  STD_LOGIC;
