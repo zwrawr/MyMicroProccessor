@@ -126,20 +126,17 @@ begin
 	);
 	
 	-- The register array from Lab_1
-	Registers: entity work.Pram_Registers 
-	Generic Map(
-		num_reg => num_registers,
-		data_size => data_size
-	)
+	Registers: entity work.regbank 
 	PORT MAP(
-		addr_A => R_A,
-		addr_B => R_B,
-		addr_C => W_A,
-		data_in => reg_in,
-		wr_en => W_EN,
+		RSELA => R_A,
+		RSELB => R_B,
+		WSEL => W_A,
+		D => reg_in,
+		WEN => W_EN,
 		clk => clk,
-		A_out => A_data,
-		B_out => B_data
+		A => A_data,
+		B => B_data,
+		rst => '0'
 	);
 
 end Behavioral;
