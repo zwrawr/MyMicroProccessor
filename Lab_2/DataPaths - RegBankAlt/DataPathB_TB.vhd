@@ -15,7 +15,6 @@ ARCHITECTURE behavior OF DataPathB_TB IS
 	constant num_registers : NATURAL := 32;
 
 	-- Component Declaration for the Unit Under Test (UUT)
- 
 	COMPONENT DataPath_B
 		GENERIC(
 			data_size : natural;
@@ -63,7 +62,7 @@ ARCHITECTURE behavior OF DataPathB_TB IS
    constant clk_period 	: time 	:= 10 ns;
    constant wait_time 	: time 	:= clk_period;
 
-	
+	-- Test data for self checking test bench
 	type TEST_VECTOR is RECORD
 		 W_EN : std_logic;
 		 AL : std_logic_vector(3 downto 0);
@@ -82,7 +81,6 @@ ARCHITECTURE behavior OF DataPathB_TB IS
 		 
 		 OEN : std_logic;
 	end RECORD;
-	
 	
 	type TEST_VECTOR_ARRAY is ARRAY(NATURAL RANGE <>) of TEST_VECTOR;
 	
@@ -155,7 +153,9 @@ BEGIN
 			OEN <= test_vectors(i).OEN;
 			
 			wait until rising_edge(clk);
-
+			
+			-- Check that the actual outputs are the same as were expecting
+			-- Have to use std_match when comparing meta values like '-'
 			assert std_match(flags, test_vectors(i).flags)
 			report lf & " [ERR!] Test " & integer'image(i)& lf &
 				" Actual flags did not equal expected flags."&
@@ -163,7 +163,7 @@ BEGIN
 				" Expected [ " & to_bstring(test_vectors(i).flags) & " ]"
 			severity error;
 			
-			assert std_match(test_vectors(i).M_B, M_B) -- have to use std_match when comparing meta values like '-'
+			assert std_match(test_vectors(i).M_B, M_B) 
 			report lf &" [ERR!] Test " & integer'image(i)& lf &
 				" Actual value to memory did not equal expected value to memory."&
 				" Actual [ " & u_tostr(M_B) & " ]" &
@@ -177,7 +177,7 @@ BEGIN
 				" Expected [ " & u_tostr(test_vectors(i).M_DA) & " ]"
 			severity error;
 			
-			-- if there were no isses report that the test was successful
+			-- If there were no isses report that the test was successful
 			assert not (
 				std_match(flags, test_vectors(i).flags) and 
 				std_match(M_B, test_vectors(i).M_B) and 

@@ -14,20 +14,20 @@ entity DataPath_D is
 		rst : in STD_LOGIC;
 		en : in STD_LOGIC;
 		
-		R_A : in  STD_LOGIC_VECTOR (log2(num_registers)-1 downto 0);
-		R_B : in  STD_LOGIC_VECTOR (log2(num_registers)-1 downto 0);
-		W_EN : in  STD_LOGIC;
-		W_A : in  STD_LOGIC_VECTOR (log2(num_registers)-1 downto 0);
-		IMM : in  STD_LOGIC_VECTOR (data_size-1 downto 0);
-		M_A : in  STD_LOGIC_VECTOR (data_size-1 downto 0);
-		M_in : in  STD_LOGIC_VECTOR (data_size-1 downto 0);
-		SEL : in  STD_LOGIC_VECTOR (7 downto 0);
-		AL : in  STD_LOGIC_VECTOR (3 downto 0);
-		SH : in  STD_LOGIC_VECTOR (log2(data_size)-1 downto 0);
+		R_A : in  STD_LOGIC_VECTOR (log2(num_registers)-1 downto 0); -- Read address A
+		R_B : in  STD_LOGIC_VECTOR (log2(num_registers)-1 downto 0); -- Read address B
+		W_EN : in  STD_LOGIC;										 -- Register write enable
+		W_A : in  STD_LOGIC_VECTOR (log2(num_registers)-1 downto 0); -- Write address
+		IMM : in  STD_LOGIC_VECTOR (data_size-1 downto 0); 			 -- Itermediate value
+		M_A : in  STD_LOGIC_VECTOR (data_size-1 downto 0);			 -- Memory address
+		M_in : in  STD_LOGIC_VECTOR (data_size-1 downto 0);			 -- Memory input (read)
+		SEL : in  STD_LOGIC_VECTOR (7 downto 0);					 -- Selector control
+		AL : in  STD_LOGIC_VECTOR (3 downto 0);						 -- ALU control
+		SH : in  STD_LOGIC_VECTOR (log2(data_size)-1 downto 0);	 	 -- Shift amount
 		
-		Flags : out  STD_LOGIC_VECTOR (7 downto 0);
-		M_DA : out  STD_LOGIC_VECTOR (data_size-1 downto 0);
-		M_out : out  STD_LOGIC_VECTOR (data_size-1 downto 0)
+		Flags : out  STD_LOGIC_VECTOR (7 downto 0);					 -- ALU flags
+		M_DA : out  STD_LOGIC_VECTOR (data_size-1 downto 0);		 -- Memory address
+		M_out : out  STD_LOGIC_VECTOR (data_size-1 downto 0)		 -- Memory output (write)
 	);
 end DataPath_D;
 
@@ -149,7 +149,7 @@ begin
 		data_out => M_out
 	);
 
-	-- The ALU and shifter from Lab 1
+	-- The ALU
 	ALU: entity work.ALU_param GENERIC MAP( N => data_size )
 	PORT MAP(
 		A => A_ALU,
@@ -160,7 +160,7 @@ begin
 		flags => flags
 	);
 	
-	-- The register array from Lab_1
+	-- The register bank
 	Registers: entity work.regbank 
 	PORT MAP(
 		RSELA => R_A,

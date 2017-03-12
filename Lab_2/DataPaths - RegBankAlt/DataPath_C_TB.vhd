@@ -188,17 +188,14 @@ BEGIN
 		-- hold reset state for 100 ns.
 		wait for 100 ns;	
 		
+		-- enable the system
 		rst <= '0';
 		en <= '1';
 		wait for 2*clk_period;
-		-- sync up to the falling edge of the clock
-		-- wait until falling_edge(clk);
 
 		-- run the test for every set of data
 		for i in test_vectors'range loop
 			
-			-- wait long enough for the Data path to process the inputs
-			--wait for clk_period/2;
 			wait until rising_edge(clk);
 			
 			-- assign test inputs
@@ -218,7 +215,6 @@ BEGIN
 			
 			OEN <= test_vectors(i).OEN;
 			
-			--wait for clk_period/2;
 			wait until falling_edge(clk);
 			
 			-- Check to see if the out put was what we were expecting
