@@ -12,7 +12,7 @@
 % == == == == == == == == == == == == == == == ==
 
 % Use the article class with font size 11pt
-\documentclass[11pt]{article}
+\documentclass[12pt]{article}
 
 % Creates placeholder text (Only needed for this example)
 \usepackage{blindtext}
@@ -24,7 +24,7 @@
 
 % setup page size
 \usepackage{geometry}
-\geometry{a4paper,margin=1.5in,lmargin=1in,rmargin=1in} % reduced margins
+\geometry{a4paper,margin=2in,lmargin=1in,rmargin=1in} % reduced margins
 
 % Set up fancy headers and footers
 \usepackage{fancyhdr} 
@@ -209,7 +209,9 @@
         \end{description}
         
       \subsubsection{hits and misses}
-
+		Array A and B map to the same location in the cache and so there is always a cache miss when trying to access one of them. This leads to A and B both having 256 cache misses and 0 cache hits. Array C is mapped to an area in cache that is not occupied by Array A or B and so is cached effectively. It has 4 cache misses and 252 cache hits.
+        
+        In total this is 516 cache misses and 252 cache hits
     \subsection{ fully-associative cache}
     
       \subsubsection{sizes}
@@ -220,7 +222,10 @@
         \end{description}
         
       \subsubsection{hits and misses}
-
+		With a fully-associative cache blocks can be placed anywhere. The cache also has more than enough blocks to store the there arrays. Because of these two facts the entirety of all there arrays can be placed in cache, This means that there will only be cache misses when a new block of an array needs to be loaded. Each array will have 4 cache misses and 252 cache hits 
+        
+        In total this is 12 cache misses and 756 cache hits
+        
     \subsection{set-associative cache with 2 blocks per set}
     
       \subsubsection{sizes}
