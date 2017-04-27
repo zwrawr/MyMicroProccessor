@@ -1,0 +1,15 @@
+	loadi r2, 16
+	ori r30, r0, 4
+	loadr r3, r30
+	xori r29, r0, 65535
+	loado r4, r30, 3
+	move r7, r0
+	andi r5, r29, 16
+L3: andi r6, r4, 1
+	br r6, =0, +2 (L4)
+	add r7, r3, r7
+L4: shr r4, r4, 1
+	shl r3, r3, 1
+	dec r5, r5
+	br r5, ≠0, -6 (L3)
+	stori r7, 0
