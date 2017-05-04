@@ -7,8 +7,8 @@ use IEEE.NUMERIC_STD.ALL;
 entity Sequencer is
 	Port ( 
 		clk : in  STD_LOGIC;
-		PC_plus : in  STD_LOGIC_VECTOR (7 downto 0); -- PC + offset
 		instr : in  STD_LOGIC_VECTOR (31 downto 0); -- instruction
+		PC_plus : in  STD_LOGIC_VECTOR (7 downto 0); -- PC + offset
 		flags : in  STD_LOGIC_VECTOR (7 downto 0); -- flags
 		PC : out  STD_LOGIC_VECTOR (7 downto 0);
 		MIA : out  STD_LOGIC_VECTOR (7 downto 0)
@@ -22,6 +22,7 @@ architecture Behavioral of Sequencer is
 	signal cond_met : STD_LOGIC; -- weather the branching condition has been met
 	
 	signal opcode : STD_LOGIC_VECTOR(5 downto 0); -- the opcode part of the instruction
+	signal offset : STD_LOGIC_VECTOR(8 downto 0); -- the opcode part of the instruction
 	signal cond : STD_LOGIC_VECTOR(2 downto 0); -- the condition part of the opcode
 begin
 
@@ -48,7 +49,8 @@ begin
 		PC_plus when opcode(5 downto 4) = "11" and cond_met = '1' else 
 		-- else incriment the value
 		std_logic_vector(unsigned(PC_internal) + 1);
-		
+
+    -- The Instruction register update process
 	register_proc : process(clk) is
 	begin
 		if rising_edge(clk) then
