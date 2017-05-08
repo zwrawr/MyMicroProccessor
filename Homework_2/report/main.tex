@@ -173,14 +173,16 @@
 % ============
 \pagenumbering{roman} % Use roman numerals for page numbers
 \tableofcontents % Adds a table of contents
+\newpage
 \listoffigures % Adds a list of figures
-%\newpage
+\listoftables % Adds a list of tables
+\newpage
 \pagenumbering{arabic} % Use Arabic (integer) numbering
 
 % ============
 % Main Pages
 % ============
-	\section{Question 1}
+	\section{Paged Segmentation}
 
 		\begin{figure}[H]
 			\centering
@@ -190,7 +192,7 @@
 
 		\newpage
 	
-	\section{Question 2}
+	\section{Caching}
 
 		$addresssize = 32 b$
 
@@ -218,7 +220,7 @@ I used excel to automate find the cache block placement for each of the blocks i
 
 \begin{table}[H]
 \centering
-\caption{Table of direct-mapped cache block placement}
+\caption{block placement in a direct-mapped cache}
 \begin{tabular}{lllllll}
 \multicolumn{1}{l|}{\multirow{2}{*}{A}}  & \multicolumn{4}{l|}{Block Index}                                       & \multicolumn{2}{l}{Total} \\
 \multicolumn{1}{l|}{}                    & 0          & 64         & 128        & \multicolumn{1}{l|}{192}        & Hits       & Misses       \\ \hline
@@ -248,7 +250,7 @@ I used excel to automate find the cache block placement for each of the blocks i
 				Array C is mapped to an area in cache that is not occupied by Array A or B and so is cached effectively. It has 4 cache misses and 252 cache hits.
 
 				In total this is 516 cache misses and 252 cache hits.
-		\subsection{ fully-associative cache}
+		\subsection{fully-associative cache}
 
 			\subsubsection{sizes}
 				\begin{description}
@@ -259,9 +261,9 @@ I used excel to automate find the cache block placement for each of the blocks i
 
 			\subsubsection{hits and misses}
 			
-				With a fully-associative cache blocks can be placed anywhere this means we avoid the overwriting problems we saw with the direct mapped cache. 
+				With a fully-associative cache blocks can be placed anywhere, this means we avoid the overwriting problems we saw with the direct mapped cache. 
 
-				Each array is 256, 32 bit, words. Giving a total size of exactly 8Kb. The cache is much larger than this (16kB) and so can easily fit all three arrays in cache at once.
+				Each array is 256, 32 bit, words. Giving a total size of exactly 8Kb. The cache is much larger than this (16kB) and so can easily fit all three arrays in cache at once. (We only need to be able to store 3 blocks, the current block of each array, to be able to effectively cache the arrays)
 
 				This means that there will only ever be cache misses when a new block of an array needs to be loaded. Since each Array takes up 4 blocks, each array will have 4 cache misses and 252 cache hits 
 
@@ -275,17 +277,19 @@ I used excel to automate find the cache block placement for each of the blocks i
 					\item[Offset : ] The same as direct mapped cache $ = 12 b$
 					\item[Index : ] $size($index$) = log_2($numsets$) -1 = log_2($blocksize$/2) -1 = 4$
 					\item[Tag : ] $size($tag$) = addresssize- size($offset$) - size($index$) = 32 - 12 -4 = 16b$
+					\item[Sets : ] $numSets = numblocks / blocksPerSet = 64/2 = 32 sets$
+
 				\end{description}
 
 			\subsubsection{hits and misses}
 
-			Again I used excel to help automate the process as mush as possible
+			Again I used excel to help automate the process as mush as possible, by generating the cache block location for the array's physical block locations.
 
 \begin{table}[H]
 \centering
-\caption{Table of set-associative cache with 2 blocks per set with a a not-last-used replacement policy block placement}
+\caption{block placement in a set-associative cache with 2 blocks per set with a not-last-used replacement policy}
 \begin{tabular}{lllllll}
-\multicolumn{1}{l|}{\multirow{2}{*}{A}}      & \multicolumn{4}{l|}{Block Indexes}                                     & \multicolumn{2}{l}{Total} \\
+\multicolumn{1}{l|}{\multirow{2}{*}{A}}      & \multicolumn{4}{l|}{Block Indexes}                                     & \multicolumn{2}{l}{Total}  \\
 \multicolumn{1}{l|}{}                        & 0          & 64         & 128        & \multicolumn{1}{l|}{192}        & Miss         & Hit         \\ \hline
 \multicolumn{1}{l|}{majority hit/miss}       & m          & m          & m          & \multicolumn{1}{l|}{m}          & 256          & 0           \\
 \multicolumn{1}{l|}{phys addr (byte)}        & 2711684608 & 2711684864 & 2711685120 & \multicolumn{1}{l|}{2711685376} &              &             \\
@@ -293,7 +297,7 @@ I used excel to automate find the cache block placement for each of the blocks i
 \multicolumn{1}{l|}{cache Set (set)}         & 6          & 7          & 8          & \multicolumn{1}{l|}{9}          &              &             \\
 \multicolumn{1}{l|}{cache Set block (block)} & 0/1        & 0/1        & 0/1        & \multicolumn{1}{l|}{0}          &              &             \\
                                              &            &            &            &                                 &              &             \\
-\multicolumn{1}{l|}{\multirow{2}{*}{B}}      & \multicolumn{4}{l|}{Block Indexes}                                     & \multicolumn{2}{l}{Total} \\
+\multicolumn{1}{l|}{\multirow{2}{*}{B}}      & \multicolumn{4}{l|}{Block Indexes}                                     & \multicolumn{2}{l}{Total}  \\
 \multicolumn{1}{l|}{}                        & 0          & 64         & 128        & \multicolumn{1}{l|}{192}        & Miss         & Hit         \\ \hline
 \multicolumn{1}{l|}{majority hit/miss}       & h          & h          & h          & \multicolumn{1}{l|}{h}          & 256          & 0           \\
 \multicolumn{1}{l|}{phys addr (byte)}        & 2711750144 & 2711750400 & 2711750656 & \multicolumn{1}{l|}{2711750912} &              &             \\
@@ -301,7 +305,7 @@ I used excel to automate find the cache block placement for each of the blocks i
 \multicolumn{1}{l|}{cache Set (set)}         & 6          & 7          & 8          & \multicolumn{1}{l|}{9}          &              &             \\
 \multicolumn{1}{l|}{cache Set block (block)} & 0/1        & 0/1        & 0/1        & \multicolumn{1}{l|}{1}          &              &             \\
                                              &            &            &            &                                 &              &             \\
-\multicolumn{1}{l|}{\multirow{2}{*}{C}}      & \multicolumn{4}{l|}{Block Indexes}                                     & \multicolumn{2}{l}{Total} \\
+\multicolumn{1}{l|}{\multirow{2}{*}{C}}      & \multicolumn{4}{l|}{Block Indexes}                                     & \multicolumn{2}{l}{Total}  \\
 \multicolumn{1}{l|}{}                        & 0          & 64         & 128        & \multicolumn{1}{l|}{192}        & Miss         & Hit         \\ \hline
 \multicolumn{1}{l|}{majority hit/miss}       & m          & m          & m          & \multicolumn{1}{l|}{m}          & 256          & 0           \\
 \multicolumn{1}{l|}{phys addr (byte)}        & 3165496832 & 3165497088 & 3165497344 & \multicolumn{1}{l|}{3165497600} &              &             \\
@@ -324,7 +328,7 @@ I used excel to automate find the cache block placement for each of the blocks i
 					\item[Offset : ] The same as direct mapped cache $ = 12 b$
 					\item[Index : ] $size($index$) = log_2($numsets$) -1 = log_2($blocksize$/8) - 1 = 2$
 					\item[Tag : ] $size($tag$) = addresssize- size($offset$) - size($index$) = 32 - 12 -2 = 18b$
-					\item[Sets : ] numSets $=$ numblocks $/$ blocksPerSet $= 64 / 8 = 8 bocks$
+					\item[Sets : ] $numSets = numblocks / blocksPerSet = 64/8 = 8 sets$
 				\end{description}
 
 			\subsubsection{hits and misses}
@@ -332,9 +336,9 @@ I used excel to automate find the cache block placement for each of the blocks i
 
 \begin{table}[H]
 \centering
-\caption{Table of set-associative cache with 8 blocks per set with a least-recently-used replacement block placement}
+\caption{block placement in a set-associative cache with 8 blocks per set with a least-recently-used replacement policy}
 \begin{tabular}{lllllll}
-\multicolumn{1}{l|}{\multirow{2}{*}{A}}      & \multicolumn{4}{l|}{Block Index}                                       & \multicolumn{2}{l}{Total} \\
+\multicolumn{1}{l|}{\multirow{2}{*}{A}}      & \multicolumn{4}{l|}{Block Index}                                       & \multicolumn{2}{l}{Total}  \\
 \multicolumn{1}{l|}{}                        & 0          & 64         & 128        & \multicolumn{1}{l|}{192}        & Misses        & Hits       \\ \cline{1-6}
 \multicolumn{1}{l|}{majority hit/miss}       & m          & m          & m          & \multicolumn{1}{l|}{m}          & 4             & 252        \\
 \multicolumn{1}{l|}{phys addr (byte)}        & 2711684608 & 2711684864 & 2711685120 & \multicolumn{1}{l|}{2711685376} &               &            \\
@@ -342,7 +346,7 @@ I used excel to automate find the cache block placement for each of the blocks i
 \multicolumn{1}{l|}{cache Set (set)}         & 6          & 7          & 0          & \multicolumn{1}{l|}{1}          &               &            \\
 \multicolumn{1}{l|}{cache Set block (block)} & 0          & 0          & 0          & \multicolumn{1}{l|}{0}          &               &            \\
                                              &            &            &            &                                 &               &            \\
-\multicolumn{1}{l|}{\multirow{2}{*}{B}}      & \multicolumn{4}{l|}{Block Index}                                       & \multicolumn{2}{l}{Total} \\
+\multicolumn{1}{l|}{\multirow{2}{*}{B}}      & \multicolumn{4}{l|}{Block Index}                                       & \multicolumn{2}{l}{Total}  \\
 \multicolumn{1}{l|}{}                        & 0          & 64         & 128        & \multicolumn{1}{l|}{192}        & Misses        & Hits       \\ \hline
 \multicolumn{1}{l|}{majority hit/miss}       & m          & m          & m          & \multicolumn{1}{l|}{m}          & 4             & 252        \\
 \multicolumn{1}{l|}{phys addr (byte)}        & 2711750144 & 2711750400 & 2711750656 & \multicolumn{1}{l|}{2711750912} &               &            \\
@@ -350,7 +354,7 @@ I used excel to automate find the cache block placement for each of the blocks i
 \multicolumn{1}{l|}{cache Set (set)}         & 6          & 7          & 0          & \multicolumn{1}{l|}{1}          &               &            \\
 \multicolumn{1}{l|}{cache Set block (block)} & 1          & 1          & 1          & \multicolumn{1}{l|}{1}          &               &            \\
                                              &            &            &            &                                 &               &            \\
-\multicolumn{1}{l|}{\multirow{2}{*}{C}}      & \multicolumn{4}{l|}{Block Index}                                       & \multicolumn{2}{l}{Total} \\
+\multicolumn{1}{l|}{\multirow{2}{*}{C}}      & \multicolumn{4}{l|}{Block Index}                                       & \multicolumn{2}{l}{Total}  \\
 \multicolumn{1}{l|}{}                        & 0          & 64         & 128        & \multicolumn{1}{l|}{192}        & Misses        & Hits       \\ \hline
 \multicolumn{1}{l|}{majority hit/miss}       & m          & m          & m          & \multicolumn{1}{l|}{m}          & 4             & 252        \\
 \multicolumn{1}{l|}{phys addr (byte)}        & 3165496832 & 3165497088 & 3165497344 & \multicolumn{1}{l|}{3165497600} &               &            \\
@@ -361,11 +365,11 @@ I used excel to automate find the cache block placement for each of the blocks i
 \end{table}
 
 			
-				Here A, B and C map to the same set, but there are 8 blocks per set so the current block of all three can be kept in memory at the same time with out overwriting each other.
+				Here A, B and C map to the same set, but there are 8 blocks per set so the current block of all three can be kept in memory at the same time with out overwriting each other. This means that all three Arrays can be effectively cached and should only have cache misses when the next block of the array needs loading.
 			
 				In total there are 12 cache misses and 756 cache hits.
 
-	\section{Question 3}
+	\section{Hazards}
 
         \lstinputlisting[language={[x86masm]Assembler},title={Multiplication Algorithm - Original }]{Code/Question3_orig.txt}
 		
@@ -470,18 +474,18 @@ I used excel to automate find the cache block placement for each of the blocks i
 % ============
 % Bibliography Pages
 % ============
-\newpage
-\printbibliography
-\newpage
+%\newpage
+%\printbibliography
+%\newpage
 
 % ============
 % Appendix Pages
 % ============
-\appendix
+%\appendix
 
-\section*{Appendices}
-	\addcontentsline{toc}{section}{Appendices}
-	\renewcommand{\thesubsection}{\Alph{subsection}}
+%\section*{Appendices}
+%	\addcontentsline{toc}{section}{Appendices}
+%	\renewcommand{\thesubsection}{\Alph{subsection}}
 
 	% Add appendices here as subsections
 
