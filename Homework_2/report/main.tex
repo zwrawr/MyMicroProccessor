@@ -214,6 +214,35 @@
 
 			\subsubsection{hits and misses}
 
+I used excel to automate find the cache block placement for each of the blocks in the three arrays. From these I was then able to manually work out the total hits and misses.
+
+\begin{table}[H]
+\centering
+\caption{Table of direct-mapped cache block placement}
+\begin{tabular}{lllllll}
+\multicolumn{1}{l|}{\multirow{2}{*}{A}}  & \multicolumn{4}{l|}{Block Index}                                       & \multicolumn{2}{l}{Total} \\
+\multicolumn{1}{l|}{}                    & 0          & 64         & 128        & \multicolumn{1}{l|}{192}        & Hits       & Misses       \\ \hline
+\multicolumn{1}{l|}{majority hit/miss}   & m          & m          & m          & \multicolumn{1}{l|}{m}          & 0          & 256          \\
+\multicolumn{1}{l|}{phys addr (byte)}    & 2711684608 & 2711684864 & 2711685120 & \multicolumn{1}{l|}{2711685376} &            &              \\
+\multicolumn{1}{l|}{phys block (block)}  & 10592518   & 10592519   & 10592520   & \multicolumn{1}{l|}{10592521}   &            &              \\
+\multicolumn{1}{l|}{cache block (block)} & 6          & 7          & 8          & \multicolumn{1}{l|}{9}          &            &              \\
+                                         &            &            &            &                                 &            &              \\
+\multicolumn{1}{l|}{\multirow{2}{*}{B}}  & \multicolumn{4}{l|}{Block Index}                                       & \multicolumn{2}{l}{Total} \\
+\multicolumn{1}{l|}{}                    & 0          & 64         & 128        & \multicolumn{1}{l|}{192}        & Hits       & Misses       \\ \hline
+\multicolumn{1}{l|}{majority hit/miss}   & m          & m          & m          & \multicolumn{1}{l|}{m}          & 0          & 256          \\
+\multicolumn{1}{l|}{phys addr}           & 2711750144 & 2711750400 & 2711750656 & \multicolumn{1}{l|}{2711750912} &            &              \\
+\multicolumn{1}{l|}{phys block}          & 10592774   & 10592775   & 10592776   & \multicolumn{1}{l|}{10592777}   &            &              \\
+\multicolumn{1}{l|}{cache block}         & 6          & 7          & 8          & \multicolumn{1}{l|}{9}          &            &              \\
+                                         &            &            &            &                                 &            &              \\
+\multicolumn{1}{l|}{\multirow{2}{*}{C}}  & \multicolumn{4}{l|}{Block Index}                                       & \multicolumn{2}{l}{Total} \\
+\multicolumn{1}{l|}{}                    & 0          & 64         & 128        & \multicolumn{1}{l|}{192}        & Hits       & Misses       \\ \hline
+\multicolumn{1}{l|}{majority hit/miss}   & m          & m          & m          & \multicolumn{1}{l|}{m}          & 252        & 4            \\
+\multicolumn{1}{l|}{phys addr}           & 3165496832 & 3165497088 & 3165497344 & \multicolumn{1}{l|}{3165497600} &            &              \\
+\multicolumn{1}{l|}{phys block}          & 12365222   & 12365223   & 12365224   & \multicolumn{1}{l|}{12365225}   &            &              \\
+\multicolumn{1}{l|}{cache block}         & 38         & 39         & 40         & \multicolumn{1}{l|}{41}         &            &             
+\end{tabular}
+\end{table}
+			
 				Array A and B map to the same location in the cache and so there is always a cache miss when trying to access one of them. This leads to A and B both having 256 cache misses and 0 cache hits. 
 
 				Array C is mapped to an area in cache that is not occupied by Array A or B and so is cached effectively. It has 4 cache misses and 252 cache hits.
@@ -229,6 +258,7 @@
 				\end{description}
 
 			\subsubsection{hits and misses}
+			
 				With a fully-associative cache blocks can be placed anywhere this means we avoid the overwriting problems we saw with the direct mapped cache. 
 
 				Each array is 256, 32 bit, words. Giving a total size of exactly 8Kb. The cache is much larger than this (16kB) and so can easily fit all three arrays in cache at once.
@@ -242,7 +272,6 @@
 			\subsubsection{sizes}
 			
 				\begin{description}
-					% TODO:: check these
 					\item[Offset : ] The same as direct mapped cache $ = 12 b$
 					\item[Index : ] $size($index$) = log_2($numsets$) -1 = log_2($blocksize$/2) -1 = 4$
 					\item[Tag : ] $size($tag$) = addresssize- size($offset$) - size($index$) = 32 - 12 -4 = 16b$
@@ -250,9 +279,41 @@
 
 			\subsubsection{hits and misses}
 
+			Again I used excel to help automate the process as mush as possible
 
+\begin{table}[H]
+\centering
+\caption{Table of set-associative cache with 2 blocks per set with a a not-last-used replacement policy block placement}
+\begin{tabular}{lllllll}
+\multicolumn{1}{l|}{\multirow{2}{*}{A}}      & \multicolumn{4}{l|}{Block Indexes}                                     & \multicolumn{2}{l}{Total} \\
+\multicolumn{1}{l|}{}                        & 0          & 64         & 128        & \multicolumn{1}{l|}{192}        & Miss         & Hit         \\ \hline
+\multicolumn{1}{l|}{majority hit/miss}       & m          & m          & m          & \multicolumn{1}{l|}{m}          & 256          & 0           \\
+\multicolumn{1}{l|}{phys addr (byte)}        & 2711684608 & 2711684864 & 2711685120 & \multicolumn{1}{l|}{2711685376} &              &             \\
+\multicolumn{1}{l|}{phys block (block)}      & 10592518   & 10592519   & 10592520   & \multicolumn{1}{l|}{10592521}   &              &             \\
+\multicolumn{1}{l|}{cache Set (set)}         & 6          & 7          & 8          & \multicolumn{1}{l|}{9}          &              &             \\
+\multicolumn{1}{l|}{cache Set block (block)} & 0/1        & 0/1        & 0/1        & \multicolumn{1}{l|}{0}          &              &             \\
+                                             &            &            &            &                                 &              &             \\
+\multicolumn{1}{l|}{\multirow{2}{*}{B}}      & \multicolumn{4}{l|}{Block Indexes}                                     & \multicolumn{2}{l}{Total} \\
+\multicolumn{1}{l|}{}                        & 0          & 64         & 128        & \multicolumn{1}{l|}{192}        & Miss         & Hit         \\ \hline
+\multicolumn{1}{l|}{majority hit/miss}       & h          & h          & h          & \multicolumn{1}{l|}{h}          & 256          & 0           \\
+\multicolumn{1}{l|}{phys addr (byte)}        & 2711750144 & 2711750400 & 2711750656 & \multicolumn{1}{l|}{2711750912} &              &             \\
+\multicolumn{1}{l|}{phys block (block)}      & 10592774   & 10592775   & 10592776   & \multicolumn{1}{l|}{10592777}   &              &             \\
+\multicolumn{1}{l|}{cache Set (set)}         & 6          & 7          & 8          & \multicolumn{1}{l|}{9}          &              &             \\
+\multicolumn{1}{l|}{cache Set block (block)} & 0/1        & 0/1        & 0/1        & \multicolumn{1}{l|}{1}          &              &             \\
+                                             &            &            &            &                                 &              &             \\
+\multicolumn{1}{l|}{\multirow{2}{*}{C}}      & \multicolumn{4}{l|}{Block Indexes}                                     & \multicolumn{2}{l}{Total} \\
+\multicolumn{1}{l|}{}                        & 0          & 64         & 128        & \multicolumn{1}{l|}{192}        & Miss         & Hit         \\ \hline
+\multicolumn{1}{l|}{majority hit/miss}       & m          & m          & m          & \multicolumn{1}{l|}{m}          & 256          & 0           \\
+\multicolumn{1}{l|}{phys addr (byte)}        & 3165496832 & 3165497088 & 3165497344 & \multicolumn{1}{l|}{3165497600} &              &             \\
+\multicolumn{1}{l|}{phys block (block)}      & 12365222   & 12365223   & 12365224   & \multicolumn{1}{l|}{12365225}   &              &             \\
+\multicolumn{1}{l|}{cache Set (set)}         & 6          & 7          & 8          & \multicolumn{1}{l|}{9}          &              &             \\
+\multicolumn{1}{l|}{cache Set block (block)} & 0/1        & 0/1        & 0/1        & \multicolumn{1}{l|}{0}          &              &            
+\end{tabular}
+\end{table}
 
-			In total there are 516 cache misses and 252 cache hits
+			Although surprising at first this cache does not manage to effectively cache any of the arrays. Because all three of the arrays map top the same cache set, they end up over writing each other due to the cache replacement policy. E.g. If a block of A block 0 of the set, then B goes in position 1. When C is placed into the set it is full so the cache replacement policy is used, and so A is replaced with C. Then we try to access A which is not in the array so there is a miss and B gets overwritten with A. And so on ...
+			
+			In total there are 768 cache misses and 0 cache hits.
 
 		\subsection{set-associative cache with 8 blocks per set with a least-recently-used replacement}
 
@@ -267,6 +328,41 @@
 				\end{description}
 
 			\subsubsection{hits and misses}
+			
+
+\begin{table}[H]
+\centering
+\caption{Table of set-associative cache with 8 blocks per set with a least-recently-used replacement block placement}
+\begin{tabular}{lllllll}
+\multicolumn{1}{l|}{\multirow{2}{*}{A}}      & \multicolumn{4}{l|}{Block Index}                                       & \multicolumn{2}{l}{Total} \\
+\multicolumn{1}{l|}{}                        & 0          & 64         & 128        & \multicolumn{1}{l|}{192}        & Misses        & Hits       \\ \cline{1-6}
+\multicolumn{1}{l|}{majority hit/miss}       & m          & m          & m          & \multicolumn{1}{l|}{m}          & 4             & 252        \\
+\multicolumn{1}{l|}{phys addr (byte)}        & 2711684608 & 2711684864 & 2711685120 & \multicolumn{1}{l|}{2711685376} &               &            \\
+\multicolumn{1}{l|}{phys block (block)}      & 10592518   & 10592519   & 10592520   & \multicolumn{1}{l|}{10592521}   &               &            \\
+\multicolumn{1}{l|}{cache Set (set)}         & 6          & 7          & 0          & \multicolumn{1}{l|}{1}          &               &            \\
+\multicolumn{1}{l|}{cache Set block (block)} & 0          & 0          & 0          & \multicolumn{1}{l|}{0}          &               &            \\
+                                             &            &            &            &                                 &               &            \\
+\multicolumn{1}{l|}{\multirow{2}{*}{B}}      & \multicolumn{4}{l|}{Block Index}                                       & \multicolumn{2}{l}{Total} \\
+\multicolumn{1}{l|}{}                        & 0          & 64         & 128        & \multicolumn{1}{l|}{192}        & Misses        & Hits       \\ \hline
+\multicolumn{1}{l|}{majority hit/miss}       & m          & m          & m          & \multicolumn{1}{l|}{m}          & 4             & 252        \\
+\multicolumn{1}{l|}{phys addr (byte)}        & 2711750144 & 2711750400 & 2711750656 & \multicolumn{1}{l|}{2711750912} &               &            \\
+\multicolumn{1}{l|}{phys block (block)}      & 10592774   & 10592775   & 10592776   & \multicolumn{1}{l|}{10592777}   &               &            \\
+\multicolumn{1}{l|}{cache Set (set)}         & 6          & 7          & 0          & \multicolumn{1}{l|}{1}          &               &            \\
+\multicolumn{1}{l|}{cache Set block (block)} & 1          & 1          & 1          & \multicolumn{1}{l|}{1}          &               &            \\
+                                             &            &            &            &                                 &               &            \\
+\multicolumn{1}{l|}{\multirow{2}{*}{C}}      & \multicolumn{4}{l|}{Block Index}                                       & \multicolumn{2}{l}{Total} \\
+\multicolumn{1}{l|}{}                        & 0          & 64         & 128        & \multicolumn{1}{l|}{192}        & Misses        & Hits       \\ \hline
+\multicolumn{1}{l|}{majority hit/miss}       & m          & m          & m          & \multicolumn{1}{l|}{m}          & 4             & 252        \\
+\multicolumn{1}{l|}{phys addr (byte)}        & 3165496832 & 3165497088 & 3165497344 & \multicolumn{1}{l|}{3165497600} &               &            \\
+\multicolumn{1}{l|}{phys block (block)}      & 12365222   & 12365223   & 12365224   & \multicolumn{1}{l|}{12365225}   &               &            \\
+\multicolumn{1}{l|}{cache Set (set)}         & 6          & 7          & 0          & \multicolumn{1}{l|}{1}          &               &            \\
+\multicolumn{1}{l|}{cache Set block (block)} & 2          & 2          & 2          & \multicolumn{1}{l|}{2}          &               &           
+\end{tabular}
+\end{table}
+
+			
+				Here A, B and C map to the same set, but there are 8 blocks per set so the current block of all three can be kept in memory at the same time with out overwriting each other.
+			
 				In total there are 12 cache misses and 756 cache hits.
 
 	\section{Question 3}
@@ -353,6 +449,24 @@
 				
 			\subsubsection{With speculative execution using static prediction – direction-based prediction}
 
+				Coincidently(which either means I've messed up or you've designed it this way) direction-based speculation gives the same result as predict taken. Because $B1$ branch has the same clock cycle cost in both predict taken and predict not taken modes.
+				
+				$B1$ has a positive jump so we are using the predict not taken method on it.
+				
+				If $B1$ is taken then it takes $4 + 3 = 7$ clock cycles (the same as no prediction, because we predicted wrong!), otherwise, if $B1$ is not taken, it takes $5$ clock cycles (Less than no prediction because we predicted right!).
+				
+				This gives a total of $ 8\times7 + 8\times5 = 56 + 40 = 96$ clock cycles.
+				
+				$B2$ has a negative jump so we are using the predict taken method on it.
+				
+				If $B2$ is taken then it takes $1$ clock cycles to get to $B1$ again otherwise it takes $3$ clock cycles to get to line $15$.
+			
+				This gives a total of $15\times1 + 1\times3 = 18$ clock cycles.
+				
+				
+				Combining all four of these clock cycle counts gives us the number 0of clock cycles the program will take to execute.
+				This gives a total of $9 + 96 + 18 + 5 = 128$ clock cycles.
+				
 % ============
 % Bibliography Pages
 % ============
