@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="E:/University/_Second Year/Computer Architectures/assesment/MyMicroProccessor/Project/Project/Decoder_TB_isim_beh1.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="decoder_tb" />
+            <top_module name="easyprint" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="12" />
+   <wvobject fp_name="/decoder_tb/instr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">instr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">instr[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/opcode" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">opcode[5:0]</obj_property>
+      <obj_property name="ObjectShortName">opcode[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/ra" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ra[4:0]</obj_property>
+      <obj_property name="ObjectShortName">ra[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/rb" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rb[4:0]</obj_property>
+      <obj_property name="ObjectShortName">rb[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/wa" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wa[4:0]</obj_property>
+      <obj_property name="ObjectShortName">wa[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/ma" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ma[15:0]</obj_property>
+      <obj_property name="ObjectShortName">ma[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/imm" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">imm[15:0]</obj_property>
+      <obj_property name="ObjectShortName">imm[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/al" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">al[3:0]</obj_property>
+      <obj_property name="ObjectShortName">al[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/sh" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">sh[3:0]</obj_property>
+      <obj_property name="ObjectShortName">sh[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/wen" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">wen</obj_property>
+      <obj_property name="ObjectShortName">wen</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/oen" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">oen</obj_property>
+      <obj_property name="ObjectShortName">oen</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/uut/opcode_int" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">opcode_int[5:0]</obj_property>
+      <obj_property name="ObjectShortName">opcode_int[5:0]</obj_property>
+   </wvobject>
+</wave_config>

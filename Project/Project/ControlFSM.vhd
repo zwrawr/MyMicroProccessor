@@ -13,7 +13,8 @@ entity ControlFSM is
 		clk : in  STD_LOGIC;
 		rst : in STD_LOGIC;
 		opcode : in  STD_LOGIC_Vector(5 downto 0);
-		S : out  STD_LOGIC_VECTOR (3 downto 0)
+		S : out  STD_LOGIC_VECTOR (4 downto 1);
+		FETCH : out STD_LOGIC
 	);
 end ControlFSM;
 
@@ -37,7 +38,7 @@ begin
 		end if;
 	end process;
 	
-	control : process(curr_state, opcode) is
+	control : process(curr_state, opcode, optype) is
 	begin
 	
 		-- Top two bits of the opcode tell us which type of instruction this is
@@ -80,17 +81,47 @@ begin
 		end case;
 	end process;
 	
-	S <= 
-		"--1-" when curr_state = S0 else
-		"----" when curr_state = S1 else
-		"--00" when curr_state = S2 else
-		"0---" when curr_state = S3 else
-		"--01" when curr_state = S4 else
-		"-0--" when curr_state = S5 else
-		"-0--" when curr_state = S6 else
-		"1---" when curr_state = S7 else
-		"--00" when curr_state = S8 else
-		"XXXX";
+	FETCH <= '1' when curr_state = S0 else '0';
+	
+	S(1) <=
+		'-' when curr_state = S0 else
+		'-' when curr_state = S1 else
+		'0' when curr_state = S2 else
+		'-' when curr_state = S3 else
+		'1' when curr_state = S4 else
+		'-' when curr_state = S5 else
+		'-' when curr_state = S6 else
+		'0' when curr_state = S7 else
+		'0' when curr_state = S8 else
+		'X';
+		
+	S(2) <=
+		'1' when curr_state = S0 else
+		'-' when curr_state = S1 else
+		'0' when curr_state = S2 else
+		'-' when curr_state = S3 else
+		'0' when curr_state = S4 else
+		'-' when curr_state = S5 else
+		'-' when curr_state = S6 else
+		'0' when curr_state = S7 else
+		'0' when curr_state = S8 else
+		'X';
+		
+	S(3) <= '1' when opcode = "100001" and curr_state = S7 else
+			'1' when opcode = "100101" and curr_state = S7 else
+			'0';
+			
+	S(4) <= 
+		'-' when curr_state = S0 else
+		'-' when curr_state = S1 else
+		'-' when curr_state = S2 else
+		'0' when curr_state = S3 else
+		'-' when curr_state = S4 else
+		'-' when curr_state = S5 else
+		'1' when curr_state = S6 else
+		'-' when curr_state = S7 else
+		'-' when curr_state = S8 else
+		'X';
 
 end Behavioral;
 

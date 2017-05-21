@@ -1,0 +1,44 @@
+nop
+loadi r15, h01f0
+brz r15,-1
+addi r31, r0, 000000011111
+add r1, r0, r0
+inc r1, r1
+brlz r31, +5
+storr r1, r31
+inc r1, r1
+dec r31, r31
+jmp -4 (L1)
+loadi r2, 0000000000000100
+ori r30, r0, 0000000000000100
+loadr r3, r30
+loado r4, r30, 3
+xori r29, r0, 1111111111111111
+move r7, r0
+andi r5, r29, 0000000000010000
+andi r6, r4, 0000000000000001
+brz r6, +2
+add r7, r3, r7
+shr r4, r4, 1
+shl r3, r3, 1
+dec r5, r5
+brnz r5, -6
+stori r7, 0
+rol r7, r7, 9
+ror r7, r7, 3
+not r8, r7
+xor r8, r29, r8
+sub r9, r8, r7
+subi r10, r9, 0000000000000001
+brgz r10, +9
+brz r10, +8
+addi r11, r10, 0000000000000010
+brz r11, +6
+or r12, r7, r11
+storo r12, r0, 1
+and r12, r12, r11
+bro r12, =1, +3
+jmp +0
+jmp +0
+stori r7, 000000011111000
+jmp +0

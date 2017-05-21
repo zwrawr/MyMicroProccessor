@@ -1,0 +1,7 @@
+[Inputs]
+clk
+rst
+=opcode[5:0]=
+[Outputs]
+=S[3:0]=
+[BiDir]

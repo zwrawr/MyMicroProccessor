@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="E:/University/_Second Year/Computer Architectures/assesment/MyMicroProccessor/Project/Project/MMU_TB_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="easyprint" />
+            <top_module name="mmu_tb" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="15" />
+   <wvobject fp_name="/mmu_tb/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmu_tb/i_addr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">i_addr[7:0]</obj_property>
+      <obj_property name="ObjectShortName">i_addr[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmu_tb/oen" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">oen</obj_property>
+      <obj_property name="ObjectShortName">oen</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmu_tb/d_in" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">d_in[15:0]</obj_property>
+      <obj_property name="ObjectShortName">d_in[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmu_tb/d_addr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">d_addr[15:0]</obj_property>
+      <obj_property name="ObjectShortName">d_addr[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmu_tb/md_addr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">md_addr[6:0]</obj_property>
+      <obj_property name="ObjectShortName">md_addr[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmu_tb/start" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmu_tb/md_in" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">md_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">md_in[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmu_tb/d_out" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">d_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">d_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmu_tb/owe" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">owe</obj_property>
+      <obj_property name="ObjectShortName">owe</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmu_tb/od_out" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">od_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">od_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmu_tb/mwe" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">mwe</obj_property>
+      <obj_property name="ObjectShortName">mwe</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmu_tb/md_out" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">md_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">md_out[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmu_tb/mi_addr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mi_addr[6:0]</obj_property>
+      <obj_property name="ObjectShortName">mi_addr[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mmu_tb/clk_period" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_period</obj_property>
+      <obj_property name="ObjectShortName">clk_period</obj_property>
+   </wvobject>
+</wave_config>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="E:/University/_Second Year/Computer Architectures/assesment/MyMicroProccessor/Project/Project/SequencerTB_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="easyprint" />
+            <top_module name="numeric_std" />
+            <top_module name="sequencertb" />
+            <top_module name="std_logic_1164" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="17" />
+   <wvobject fp_name="/sequencertb/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sequencertb/pc_plus" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pc_plus[7:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_plus[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sequencertb/instr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">instr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">instr[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sequencertb/flags" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">flags[7:0]</obj_property>
+      <obj_property name="ObjectShortName">flags[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sequencertb/mia" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mia[7:0]</obj_property>
+      <obj_property name="ObjectShortName">mia[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sequencertb/uut/mia" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mia[7:0]</obj_property>
+      <obj_property name="ObjectShortName">mia[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sequencertb/uut/pc" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pc[7:0]</obj_property>
+      <obj_property name="ObjectShortName">pc[7:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sequencertb/uut/cond_met" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">cond_met</obj_property>
+      <obj_property name="ObjectShortName">cond_met</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sequencertb/uut/opcode" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">opcode[5:0]</obj_property>
+      <obj_property name="ObjectShortName">opcode[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sequencertb/uut/cond" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cond[2:0]</obj_property>
+      <obj_property name="ObjectShortName">cond[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sequencertb/pc" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pc[7:0]</obj_property>
+      <obj_property name="ObjectShortName">pc[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff0000</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sequencertb/uut/pc_plus" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pc_plus[7:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_plus[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sequencertb/uut/pc_internal" type="array" db_ref_id="1">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">pc_internal[7:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_internal[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="label">pc_internal[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sequencertb/uut/pc_next" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pc_next[7:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_next[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sequencertb/uut/clk_slow" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_slow</obj_property>
+      <obj_property name="ObjectShortName">clk_slow</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sequencertb/uut/rst" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sequencertb/uut/en" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">en</obj_property>
+      <obj_property name="ObjectShortName">en</obj_property>
+   </wvobject>
+</wave_config>
