@@ -359,7 +359,7 @@
       <wvobject fp_name="/processortb/uut/Inst_DataPath_C/imm" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">imm[15:0]</obj_property>
          <obj_property name="ObjectShortName">imm[15:0]</obj_property>
-         <obj_property name="Radix">HEXRADIX</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/processortb/uut/Inst_DataPath_C/m_a" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">m_a[15:0]</obj_property>
@@ -567,10 +567,6 @@
    <wvobject fp_name="group172" type="group">
       <obj_property name="label">Sequencer</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <wvobject fp_name="/processortb/uut/Inst_ControlUnit/Inst_Sequencer/clk" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">clk</obj_property>
-         <obj_property name="ObjectShortName">clk</obj_property>
-      </wvobject>
       <wvobject fp_name="/processortb/uut/Inst_ControlUnit/Inst_Sequencer/rst" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">rst</obj_property>
          <obj_property name="ObjectShortName">rst</obj_property>
@@ -578,11 +574,6 @@
       <wvobject fp_name="/processortb/uut/Inst_ControlUnit/Inst_Sequencer/instr" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">instr[31:0]</obj_property>
          <obj_property name="ObjectShortName">instr[31:0]</obj_property>
-         <obj_property name="Radix">HEXRADIX</obj_property>
-      </wvobject>
-      <wvobject fp_name="/processortb/uut/Inst_ControlUnit/Inst_Sequencer/pc_plus" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">pc_plus[7:0]</obj_property>
-         <obj_property name="ObjectShortName">pc_plus[7:0]</obj_property>
          <obj_property name="Radix">HEXRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/processortb/uut/Inst_ControlUnit/Inst_Sequencer/flags" type="array" db_ref_id="1">
@@ -605,6 +596,11 @@
          <obj_property name="ObjectShortName">pc_internal[7:0]</obj_property>
          <obj_property name="Radix">HEXRADIX</obj_property>
       </wvobject>
+      <wvobject fp_name="/processortb/uut/Inst_ControlUnit/Inst_Sequencer/pc_plus" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">pc_plus[7:0]</obj_property>
+         <obj_property name="ObjectShortName">pc_plus[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
       <wvobject fp_name="/processortb/uut/Inst_ControlUnit/Inst_Sequencer/pc_next" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">pc_next[7:0]</obj_property>
          <obj_property name="ObjectShortName">pc_next[7:0]</obj_property>
@@ -614,6 +610,10 @@
          <obj_property name="ElementShortName">cond_met</obj_property>
          <obj_property name="ObjectShortName">cond_met</obj_property>
       </wvobject>
+      <wvobject fp_name="/processortb/uut/Inst_ControlUnit/Inst_Sequencer/clk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
       <wvobject fp_name="/processortb/uut/Inst_ControlUnit/Inst_Sequencer/opcode" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">opcode[5:0]</obj_property>
          <obj_property name="ObjectShortName">opcode[5:0]</obj_property>
@@ -622,7 +622,7 @@
       <wvobject fp_name="/processortb/uut/Inst_ControlUnit/Inst_Sequencer/cond" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">cond[2:0]</obj_property>
          <obj_property name="ObjectShortName">cond[2:0]</obj_property>
-         <obj_property name="Radix">HEXRADIX</obj_property>
+         <obj_property name="Radix">BINARYRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="group144" type="group">
          <obj_property name="label">ClockDivider</obj_property>
@@ -647,10 +647,6 @@
       <wvobject fp_name="/processortb/uut/Inst_ControlUnit/Inst_ControlFSM/s" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">s[4:1]</obj_property>
          <obj_property name="ObjectShortName">s[4:1]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/processortb/uut/Inst_ControlUnit/Inst_ControlFSM/fetch" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">fetch</obj_property>
-         <obj_property name="ObjectShortName">fetch</obj_property>
       </wvobject>
       <wvobject fp_name="/processortb/uut/Inst_ControlUnit/Inst_ControlFSM/curr_state" type="other" db_ref_id="1">
          <obj_property name="ElementShortName">curr_state</obj_property>

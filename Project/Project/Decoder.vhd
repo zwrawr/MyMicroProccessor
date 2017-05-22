@@ -1,42 +1,26 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date:    21:58:01 05/18/2017 
--- Design Name: 
--- Module Name:    Decoder_Block - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
---
--- Dependencies: 
---
--- Revision: 
--- Revision 0.01 - File Created
--- Additional Comments: 
---
-----------------------------------------------------------------------------------
 library IEEE;
+USE ieee.numeric_std.ALL;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity Decoder_Block is
-    Port ( instr : in  STD_LOGIC_VECTOR (31 downto 0);
-	
-		   OPCODE : out STD_LOGIC_VECTOR(5 downto 0);
+    Port ( 
+		instr : in  STD_LOGIC_VECTOR (31 downto 0);
 
-           RA : out  STD_LOGIC_VECTOR (4 downto 0);
-           RB : out  STD_LOGIC_VECTOR (4 downto 0);
-           WA : out  STD_LOGIC_VECTOR (4 downto 0);
-		   
-           MA : out  STD_LOGIC_VECTOR (15 downto 0);
-           IMM : out  STD_LOGIC_VECTOR (15 downto 0);
-		   
-           AL : out  STD_LOGIC_VECTOR (3 downto 0);
-           SH : out  STD_LOGIC_VECTOR (3 downto 0);
-		   
-           WEN : out  STD_LOGIC;
-		   OEN : out  STD_LOGIC
+		STAGE : in STD_LOGIC_VECTOR(8 downto 0);
+		OPCODE : out STD_LOGIC_VECTOR(5 downto 0);
+
+		RA : out  STD_LOGIC_VECTOR (4 downto 0);
+		RB : out  STD_LOGIC_VECTOR (4 downto 0);
+		WA : out  STD_LOGIC_VECTOR (4 downto 0);
+
+		MA : out  STD_LOGIC_VECTOR (15 downto 0);
+		IMM : out  STD_LOGIC_VECTOR (15 downto 0);
+
+		AL : out  STD_LOGIC_VECTOR (3 downto 0);
+		SH : out  STD_LOGIC_VECTOR (3 downto 0);
+
+		WEN : out  STD_LOGIC;
+		OEN : out  STD_LOGIC
 	);
 
 end Decoder_Block;
@@ -59,8 +43,8 @@ begin
 		instr(20 downto 16) when OPCODE_int(5 downto 4) = "00" else
 		instr(4 downto 0);
 	
-	InstrInternal1(9 downto 0) <= instr(19 downto 10);
-	InstrInternal2(8 downto 0) <= instr(24 downto 16);
+	InstrInternal1 <= std_logic_vector(resize(signed(instr(19 downto 10)), 16));
+	InstrInternal2 <= std_logic_vector(resize(signed(instr(24 downto 16)), 16));
 
 	IMM_internal <= 
 		InstrInternal1 when OPCODE_int(5 downto 4) = "10" and  OPCODE_int(1 downto 0) = "11" else
@@ -71,6 +55,7 @@ begin
 	MA <= IMM_internal;
 
 	AL <=
+	    "1010" when STAGE(1) = '1' else -- calc branch
 		"0100" when OPCODE_int(5 downto 3) = "010" and OPCODE_int(1 downto 0) = "01" else -- A & B
 		"0101" when OPCODE_int(5 downto 3) = "010" and OPCODE_int(1 downto 0) = "10" else -- A || B
 		"0110" when OPCODE_int(5 downto 3) = "010" and OPCODE_int(1 downto 0) = "11" else -- A xor B

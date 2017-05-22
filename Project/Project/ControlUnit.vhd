@@ -44,23 +44,24 @@ end ControlUnit;
 architecture Behavioral of ControlUnit is
 
 	signal OPCODE : STD_LOGIC_VECTOR (5 downto 0);
-	signal FETCH : STD_LOGIC;
-
+	
+	signal STAGE : STD_LOGIC_VECTOR (8 downto 0);
 begin
+
 
 	Inst_ControlFSM: entity work.ControlFSM PORT MAP(
 		clk => clk ,
 		rst => rst,
 		opcode => OPCODE ,
 		S => S,
-		FETCH => FETCH
+		STAGE => STAGE
 	);
 	
 	Inst_Sequencer: entity work.Sequencer PORT MAP(
 		clk => clk ,
 		rst => rst,
 		en => en,
-		FETCH => FETCH,
+		STAGE => STAGE,
 		instr => instr ,
 		PC_plus => PC_Plus,
 		flags => Flags,
@@ -70,6 +71,7 @@ begin
 	
 	Inst_Decoder_Block: entity work.Decoder_Block PORT MAP(
 		instr => instr,
+		STAGE => STAGE,
 		OPCODE => OPCODE,
 		RA => RA,
 		RB => RB,

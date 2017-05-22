@@ -14,7 +14,7 @@ entity ControlFSM is
 		rst : in STD_LOGIC;
 		opcode : in  STD_LOGIC_Vector(5 downto 0);
 		S : out  STD_LOGIC_VECTOR (4 downto 1);
-		FETCH : out STD_LOGIC
+		STAGE : out STD_LOGIC_VECTOR(8 downto 0)
 	);
 end ControlFSM;
 
@@ -81,11 +81,20 @@ begin
 		end case;
 	end process;
 	
-	FETCH <= '1' when curr_state = S0 else '0';
+	STAGE(0) <= '1' when curr_state = S0 else '0';
+	STAGE(1) <= '1' when curr_state = S1 else '0';
+	STAGE(2) <= '1' when curr_state = S2 else '0';
+	STAGE(3) <= '1' when curr_state = S3 else '0';
+	STAGE(4) <= '1' when curr_state = S4 else '0';
+	STAGE(5) <= '1' when curr_state = S5 else '0';
+	STAGE(6) <= '1' when curr_state = S6 else '0';
+	STAGE(7) <= '1' when curr_state = S7 else '0';
+	STAGE(8) <= '1' when curr_state = S8 else '0';
 	
 	S(1) <=
 		'-' when curr_state = S0 else
-		'-' when curr_state = S1 else
+		'-' when curr_state = S1 and optype /= "11" else
+		'1' when curr_state = S1 and optype = "11" else
 		'0' when curr_state = S2 else
 		'-' when curr_state = S3 else
 		'1' when curr_state = S4 else
@@ -97,7 +106,8 @@ begin
 		
 	S(2) <=
 		'1' when curr_state = S0 else
-		'-' when curr_state = S1 else
+		'-' when curr_state = S1 and optype /= "11" else
+		'1' when curr_state = S1 and optype = "11" else
 		'0' when curr_state = S2 else
 		'-' when curr_state = S3 else
 		'0' when curr_state = S4 else
