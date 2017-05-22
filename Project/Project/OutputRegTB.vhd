@@ -67,6 +67,11 @@ BEGIN
 	  "DATA IN/DATA OUT BROKED"
 	  severity error;
 	  
+	  assert not std_match(data_out, "1100110011001100")
+	  report lf &
+	  "DATA IN/DATA OUT WORKS"
+	  severity note;
+	  
 	  WE <= '0';
 	  data_in <= "0011100000111111";
 	  wait for clk_period;
@@ -75,6 +80,11 @@ BEGIN
 	  report lf &
 	  "WE BROKED"
 	  severity error;
+	  
+	  assert not std_match(data_out, "1100110011001100")
+	  report lf &
+	  "WE Works"
+	  severity note;
 	  
       wait;
    end process;

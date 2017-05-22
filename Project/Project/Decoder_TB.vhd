@@ -13,6 +13,7 @@ ARCHITECTURE behavior OF Decoder_TB IS
     COMPONENT Decoder_Block
     PORT(
          instr : IN  std_logic_vector(31 downto 0);
+		 STAGE : in STD_LOGIC_VECTOR(8 downto 0);
 		 OPCODE : OUT  std_logic_vector(5 downto 0);
          RA : OUT  std_logic_vector(4 downto 0);
          RB : OUT  std_logic_vector(4 downto 0);
@@ -29,6 +30,7 @@ ARCHITECTURE behavior OF Decoder_TB IS
 
    --Inputs
    signal instr : std_logic_vector(31 downto 0) := (others => '0');
+   signal STAGE : std_logic_vector(8 downto 0) := (others => '0');
 
  	--Outputs
    signal OPCODE : std_logic_vector(5 downto 0);
@@ -46,7 +48,8 @@ ARCHITECTURE behavior OF Decoder_TB IS
 	type TEST_RECORD is record
 		--Inputs
 		 instr : std_logic_vector(31 downto 0);
-		 
+		 STAGE : std_logic_vector(8 downto 0);
+
 		 --Outputs
 		 OPCODE : std_logic_vector(5 downto 0);
          RA : std_logic_vector(4 downto 0);
@@ -64,11 +67,11 @@ ARCHITECTURE behavior OF Decoder_TB IS
     type TEST_RECORD_ARRAY is array (NATURAL range <>) of TEST_RECORD;
 	
 	constant test_data : TEST_RECORD_ARRAY := (
---	INSTRUCTION,								OPCODE, 	RA, 		RB,			WA, 	MA,				    	IMM,				ALU,	SH,		WEN, OEN
-		("011000------0010------1001110011",	"011000",	"10011",	"-----",	"10011", "----------------",	"----------------",	"1100",	"0010",	'1', '0'),
-		("00011000110011001100110101011110",	"000110",	"01010",	"-----",	"11110", "----------------",	"0011001100110011",	"1010",	"----",	'1', '0'),	 
-		("000100-----00011------0001000010", 	"000100",  	"00010", 	"00011",	"00010", "----------------",	"----------------",	"1010",	"----",	'1', '0'),
-		("10000100000001111100000000001111",	"100001",	"-----",	"-----",	"01111", 			X"01F0",	"----------------",	"----", "----",	'1', '0')
+--	INSTRUCTION,								STAGE,			OPCODE, 	RA, 		RB,			WA,		 MA,				    IMM,				ALU,	SH,		WEN, OEN
+		("011000------0010------1001110011",	"000001000",	"011000",	"10011",	"-----",	"10011", "----------------",	"----------------",	"1100",	"0010",	'1', '0'),
+		("00011000110011001100110101011110",	"000001000",	"000110",	"01010",	"-----",	"11110", "----------------",	"0011001100110011",	"1010",	"----",	'1', '0'),	 
+		("000100-----00011------0001000010", 	"010000000",	"000100",  	"00010", 	"00011",	"00010", "----------------",	"----------------",	"1010",	"----",	'1', '0'),
+		("10000100000001111100000000001111",	"010000000",	"100001",	"-----",	"-----",	"01111", 			X"01F0",	"----------------",	"----", "----",	'1', '0')
 	);
 	
 BEGIN
@@ -76,6 +79,7 @@ BEGIN
 	-- Instantiate the Unit Under Test (UUT)
    uut: Decoder_Block PORT MAP (
           instr => instr,
+          STAGE => STAGE,
 		  OPCODE => OPCODE,
           RA => RA,
           RB => RB,
@@ -99,7 +103,8 @@ BEGIN
 
 			-- assign test inputs
 			instr <= test_data(i).instr;
-			
+			STAGE <= test_data(i).STAGE;
+
 			wait for 100 ns;
 			
 			-- Check to see if the out put was what we were expecting

@@ -1,0 +1,23 @@
+ISim P.28xd (signature 0xa0883be4)
+This is a Full version of ISim.
+Time resolution is 1 ps
+WARNING: Simulation object /mmu_tb/test_data was not traceable in the design for the following reason:
+ISim does not yet support tracing of constant and generic multi-dimensional arrays.
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+at 110 ns(1): Note: 
+ [ OK ] Test 0 was successful!
+ (/mmu_tb/).
+at 120 ns(1): Note: 
+ [ OK ] Test 1 was successful!
+ (/mmu_tb/).
+at 130 ns(1): Note: 
+ [ OK ] Test 2 was successful!
+ (/mmu_tb/).
+at 140 ns(1): Note: 
+ [ OK ] Test 3 was successful!
+ (/mmu_tb/).
+at 150 ns(1): Note: 
+ [ OK ] Test 4 was successful!
+ (/mmu_tb/).
+ISim>  

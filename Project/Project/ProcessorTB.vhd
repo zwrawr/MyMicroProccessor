@@ -34,43 +34,53 @@ ARCHITECTURE behavior OF ProcessorTB IS
    constant clk_period : time := 10 ns;
  
 BEGIN
- 
-	-- Instantiate the Unit Under Test (UUT)
-   uut: Processor PORT MAP (
-          clk => clk,
-          en => en,
-          rst => rst,
-          start => start,
-          data_out => data_out
-        );
 
-   -- Clock process definitions
-   clk_process :process
-   begin
-		clk <= '0';
-		wait for clk_period/2;
-		clk <= '1';
-		wait for clk_period/2;
-   end process;
- 
+  -- Instantiate the Unit Under Test (UUT)
+  uut: Processor PORT MAP (
+      clk => clk,
+      en => en,
+      rst => rst,
+      start => start,
+      data_out => data_out
+    );
 
-   -- Stimulus process
-   stim_proc: process
-   begin		
-      -- hold reset state for 100 ns.
-      wait for 100 ns;	
+  -- Clock process definitions
+  clk_process :process
+  begin
+    clk <= '0';
+    wait for clk_period/2;
+    clk <= '1';
+    wait for clk_period/2;
+  end process;
 
-      -- insert stimulus here 
-	  
-	 rst <= '1';
-	 
-	 wait until rising_edge(clk);
 
-	 rst <= '0';
-	 
-	 en <= '1';
-	 
-      wait;
-   end process;
+  -- Stimulus process
+  stim_proc: process
+  begin		
+    -- hold reset state for 100 ns.
+    wait for 100 ns;	
+
+
+    -- do an inital reset
+    rst <= '1';
+
+    wait until rising_edge(clk);
+
+    rst <= '0';
+
+    en <= '1';
+
+    -- wait a while whilst the cpu is in a loop before
+    --  taking start high
+    wait for 50*clk_period;
+
+    start <= '1';
+
+    wait until rising_edge(clk);
+    wait for 15*clk_period;
+    start <= '0';
+
+    wait;
+  end process;
 
 END;

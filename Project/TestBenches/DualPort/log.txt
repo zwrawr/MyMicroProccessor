@@ -1,0 +1,11 @@
+ISim P.28xd (signature 0xa0883be4)
+This is a Full version of ISim.
+
+# run 1000 ns 
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+at 210 ns: Note: 
+Works (/dualportmemorytb/).
+at 230 ns: Note: 
+Works (/dualportmemorytb/).
+ISim>  

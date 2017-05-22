@@ -18,10 +18,10 @@ ARCHITECTURE behavior OF ControlFSM_TB IS
 
 	COMPONENT ControlFSM
 	PORT(
-		clk : IN  std_logic;
-		rst : IN  std_logic;
-		opcode : IN  std_logic_vector(5 downto 0);
-		S : OUT  std_logic_vector(3 downto 0)
+		clk : IN  std_logic; --  clk
+		rst : IN  std_logic; -- sync active high reset
+		opcode : IN  std_logic_vector(5 downto 0); -- opcode from instruction
+		S : OUT  std_logic_vector(3 downto 0) --  Selectors for muxes
 	);
 	END COMPONENT;
 

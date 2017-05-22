@@ -15,7 +15,7 @@ ARCHITECTURE behavior OF SequencerTB IS
          clk : IN  std_logic;
 		 rst : IN  std_logic;
 		 en : IN std_logic;
-		 FETCH : in STD_LOGIC;
+		 STAGE : in std_logic_vector(8 downto 0);
          PC_plus : IN  std_logic_vector(7 downto 0);
          instr : IN  std_logic_vector(31 downto 0);
          flags : IN  std_logic_vector(7 downto 0);
@@ -29,7 +29,7 @@ ARCHITECTURE behavior OF SequencerTB IS
    signal clk : std_logic := '0';
    signal rst : std_logic := '1';
    signal en : std_logic := '0';
-   signal FETCH : std_logic := '0';
+   signal STAGE : std_logic_vector(8 downto 0) := (others => '0');
    signal PC_plus : std_logic_vector(7 downto 0) := (others => '0');
    signal instr : std_logic_vector(31 downto 0) := (others => '0');
    signal flags : std_logic_vector(7 downto 0) := (others => '0');
@@ -71,7 +71,7 @@ BEGIN
 		clk => clk,
 		rst => rst,
 		en => en,
-		FETCH => FETCH,
+		STAGE => STAGE,
 		PC_plus => PC_plus,
 		instr => instr,
 		flags => flags,
@@ -105,11 +105,12 @@ BEGIN
 			instr <= test_data(i).instr;
 			PC_plus <= test_data(i).PC_plus;
 			flags <= test_data(i).flags;
-			FETCH <= '1';
 
-			wait for clk_period;
-			FETCH <= '0';
-			wait for 5*clk_period;
+			wait for 1*clk_period;
+			STAGE(0) <= '0';
+			wait for 4*clk_period;
+			STAGE(0) <= '1';
+
 
 			-- Check to see if the out put was what we were expecting
 			assert std_match(PC, test_data(i).PC)
@@ -133,7 +134,12 @@ BEGIN
 			
 
 		end loop;
-
+		
+		STAGE(8) <= '1';
+		wait for 1*clk_period;
+		STAGE(0) <= '0';
+		STAGE(8) <= '0';
+		
 		-- End of test
       wait;
    end process;

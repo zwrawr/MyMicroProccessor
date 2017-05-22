@@ -3,10 +3,11 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
+-- ====
+-- Processor
+-- Top level schematic that connects all of the main blocks of the 
+-- CPU together.
+-- ====
 
 entity Processor is
     Port ( 

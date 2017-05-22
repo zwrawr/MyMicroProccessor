@@ -1,0 +1,19 @@
+ISim P.28xd (signature 0xa0883be4)
+This is a Full version of ISim.
+
+# run 1000 ns 
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+at 200 ns: Note: 
+ [ OK ] Test 0 was successful!
+ (/decoder_tb/).
+at 300 ns: Note: 
+ [ OK ] Test 1 was successful!
+ (/decoder_tb/).
+at 400 ns: Note: 
+ [ OK ] Test 2 was successful!
+ (/decoder_tb/).
+at 500 ns: Note: 
+ [ OK ] Test 3 was successful!
+ (/decoder_tb/).
+ISim>  

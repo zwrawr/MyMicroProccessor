@@ -1,0 +1,59 @@
+ISim P.28xd (signature 0xa0883be4)
+This is a Full version of ISim.
+Time resolution is 1 ps
+WARNING: Simulation object /controlfsm_tb/test_data was not traceable in the design for the following reason:
+ISim does not yet support tracing of constant and generic multi-dimensional arrays.
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+at 120 ns(1): Note: 
+ [ OK ] Test 0 was successful!
+ (/controlfsm_tb/).
+at 130 ns(1): Note: 
+ [ OK ] Test 1 was successful!
+ (/controlfsm_tb/).
+at 140 ns(1): Note: 
+ [ OK ] Test 2 was successful!
+ (/controlfsm_tb/).
+at 150 ns(1): Note: 
+ [ OK ] Test 3 was successful!
+ (/controlfsm_tb/).
+at 160 ns(1): Note: 
+ [ OK ] Test 4 was successful!
+ (/controlfsm_tb/).
+at 170 ns(1): Note: 
+ [ OK ] Test 5 was successful!
+ (/controlfsm_tb/).
+at 180 ns(1): Note: 
+ [ OK ] Test 6 was successful!
+ (/controlfsm_tb/).
+at 190 ns(1): Note: 
+ [ OK ] Test 7 was successful!
+ (/controlfsm_tb/).
+at 200 ns(1): Note: 
+ [ OK ] Test 8 was successful!
+ (/controlfsm_tb/).
+at 210 ns(1): Note: 
+ [ OK ] Test 9 was successful!
+ (/controlfsm_tb/).
+at 220 ns(1): Note: 
+ [ OK ] Test 10 was successful!
+ (/controlfsm_tb/).
+at 230 ns(1): Note: 
+ [ OK ] Test 11 was successful!
+ (/controlfsm_tb/).
+at 240 ns(1): Note: 
+ [ OK ] Test 12 was successful!
+ (/controlfsm_tb/).
+at 250 ns(1): Note: 
+ [ OK ] Test 13 was successful!
+ (/controlfsm_tb/).
+at 260 ns(1): Note: 
+ [ OK ] Test 14 was successful!
+ (/controlfsm_tb/).
+at 270 ns(1): Note: 
+ [ OK ] Test 15 was successful!
+ (/controlfsm_tb/).
+at 280 ns(1): Note: 
+ [ OK ] Test 16 was successful!
+ (/controlfsm_tb/).
+ISim>  

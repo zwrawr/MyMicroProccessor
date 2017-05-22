@@ -3,18 +3,23 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
+-- ====
+-- Sequencer
+-- Decides on what instruction to exicute next.
+-- Handels branches and incrimenting the PC
+-- ====
 
 entity Sequencer is
 	Port ( 
-		clk : in  STD_LOGIC;
-		rst : in STD_LOGIC;
-		en : in STD_LOGIC;
-		STAGE : in STD_LOGIC_VECTOR(8 downto 0);
+		clk : in  STD_LOGIC; -- clock
+		rst : in STD_LOGIC; -- active high sync reset
+		en : in STD_LOGIC; -- enable
+		STAGE : in STD_LOGIC_VECTOR(8 downto 0); -- stage of exicution flags
 		instr : in  STD_LOGIC_VECTOR (31 downto 0); -- instruction
 		PC_plus : in  STD_LOGIC_VECTOR (7 downto 0); -- PC + offset
 		flags : in  STD_LOGIC_VECTOR (7 downto 0); -- flags
-		PC : out  STD_LOGIC_VECTOR (7 downto 0);
-		MIA : out  STD_LOGIC_VECTOR (7 downto 0)
+		PC : out  STD_LOGIC_VECTOR (7 downto 0); -- program counter
+		MIA : out  STD_LOGIC_VECTOR (7 downto 0) -- memory address of instruction
 	);
 end Sequencer;
 
@@ -30,9 +35,11 @@ architecture Behavioral of Sequencer is
 	signal cond_met_i : STD_LOGIC;
 begin
 
+	-- assign opcode and cond from the instruction
 	opcode <= instr(31 downto 26);
 	cond <= opcode(2 downto 0);
 
+	-- Calculate weather the condition to branch has been met
 	cond_met <=
 		'1' when cond = "000" and flags(0) = '1' and STAGE(8) = '1' else  -- ra = 0
 		'1' when cond = "001" and flags(1) = '1' and STAGE(8) = '1' else  -- ra != 0
@@ -41,17 +48,12 @@ begin
 		'1' when cond = "100" and flags(3) = '1' and STAGE(8) = '1' else  -- ra > 0
 		'1' when cond = "101" and flags(6) = '1' and STAGE(8) = '1' else  -- ra <= 0
 		'1' when cond = "110" and flags(5) = '1' and STAGE(8) = '1' else  -- ra >= 0
-		'1' when cond = "111" else  				   -- jump
+		'1' when cond = "111" else -- jump
 		'0';
-
+	
+	-- map internal signals to outputs
 	PC <= PC_internal;
 	MIA <= PC_internal;
-
-	--PC_next <=
-		-- if its a branch instruction and the condition is met then do PC_plus
-		--PC_plus when opcode(5 downto 4) = "11" and cond_met = '1' else
-		-- else incriment the value
-		--std_logic_vector(unsigned(PC_internal) + 1);
 
     -- The Instruction register update process
 	register_proc : process(clk, rst, en, STAGE, cond_met, opcode) is
@@ -60,7 +62,6 @@ begin
 			if rst = '1' then
 				PC_internal <= (others => '0');
 			elsif en = '1' and STAGE(0) = '1' then
-				--PC_internal <= PC_next;
 				if opcode(5 downto 4) = "11" and cond_met_i = '1' then
 					PC_internal <= PC_next;
 				else
@@ -70,6 +71,8 @@ begin
 		end if;
 	end process;
 	
+	-- Add a register for PC_PLUS so we can keep the value until after
+	-- the condition is evaluated.
 	stick_proc : process(clk, PC_plus, STAGE) is
 	begin
 		if rising_edge(clk) and STAGE(8) = '1' then
@@ -77,6 +80,8 @@ begin
 		end if;
 	end process;
 
+	-- Add a register for cond met so we can keep the value until we need
+	-- to branch.
 	met_proc : process(clk, cond_met, STAGE) is
 	begin
 		if rising_edge(clk) and STAGE(8) = '1' then

@@ -12,7 +12,6 @@ ARCHITECTURE behavior OF MMU_TB IS
  
     COMPONENT MMU
     PORT(
-         clk : IN  std_logic;
          I_addr : IN  std_logic_vector(7 downto 0);
          OEn : IN  std_logic;
          D_in : IN  std_logic_vector(15 downto 0);
@@ -92,7 +91,6 @@ BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
    uut: MMU PORT MAP (
-          clk => clk,
           I_addr => I_addr,
           OEn => OEn,
           D_in => D_in,

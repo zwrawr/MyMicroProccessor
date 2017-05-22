@@ -3,18 +3,21 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
+-- ====
+-- ControlFSM
+-- The finate state machine that controls which stage of instruction processing
+-- We are currently in. As well as deciding which stages of proccessing the 
+-- current instruction need to pass through. It also provide the STAGE and S 
+-- flags used else where in the CPU
+-- ====
 
 entity ControlFSM is
 	Port ( 
-		clk : in  STD_LOGIC;
-		rst : in STD_LOGIC;
-		opcode : in  STD_LOGIC_Vector(5 downto 0);
-		S : out  STD_LOGIC_VECTOR (4 downto 1);
-		STAGE : out STD_LOGIC_VECTOR(8 downto 0)
+		clk : in  STD_LOGIC; -- clock
+		rst : in STD_LOGIC; -- active high sync reset
+		opcode : in  STD_LOGIC_Vector(5 downto 0); -- the opcode of the current instruction
+		S : out  STD_LOGIC_VECTOR (4 downto 1); -- Selection flags which control multiplexers in the data path
+		STAGE : out STD_LOGIC_VECTOR(8 downto 0) -- The current stage of exicution
 	);
 end ControlFSM;
 
@@ -27,23 +30,27 @@ architecture Behavioral of ControlFSM is
 	
 begin
 
+	-- The next state assignment process for this FSM
 	restart : process(clk,rst) is
 	begin
 		if rising_edge(clk) then
-			if (rst='1') then
-				curr_state <= S0;
+			if (rst='1') then -- sync reset
+				curr_state <= S0; -- S0 is the reset state
 			else
-				curr_state <= next_state;
+				curr_state <= next_state; -- if were not reseting move to the next state
 			end if;
 		end if;
 	end process;
 	
+	-- The next state calculation process
 	control : process(curr_state, opcode, optype) is
 	begin
 	
-		-- Top two bits of the opcode tell us which type of instruction this is
+		-- Top two bits of the opcode tell us which type of instruction this is.
+		-- e.g. arithmetic or branch
 		optype <= opcode(opcode'length -1 downto opcode'length -2);
 		
+		-- Decide on what the next state is based of of the opcode and optype
 		case curr_state is
 			when S0 =>
 				next_state <= S1;
@@ -81,6 +88,7 @@ begin
 		end case;
 	end process;
 	
+	-- Set the bit flags for the STAGE signal
 	STAGE(0) <= '1' when curr_state = S0 else '0';
 	STAGE(1) <= '1' when curr_state = S1 else '0';
 	STAGE(2) <= '1' when curr_state = S2 else '0';
@@ -91,6 +99,7 @@ begin
 	STAGE(7) <= '1' when curr_state = S7 else '0';
 	STAGE(8) <= '1' when curr_state = S8 else '0';
 	
+	-- Set the flags for the select (S) signal
 	S(1) <=
 		'-' when curr_state = S0 else
 		'-' when curr_state = S1 and optype /= "11" else
@@ -109,7 +118,7 @@ begin
 		'-' when curr_state = S1 and optype /= "11" else
 		'1' when curr_state = S1 and optype = "11" else
 		'0' when curr_state = S2 else
-		'-' when curr_state = S3 else
+		'0' when curr_state = S3 else
 		'0' when curr_state = S4 else
 		'-' when curr_state = S5 else
 		'-' when curr_state = S6 else
@@ -124,7 +133,7 @@ begin
 	S(4) <= 
 		'-' when curr_state = S0 else
 		'-' when curr_state = S1 else
-		'-' when curr_state = S2 else
+		'0' when curr_state = S2 else
 		'0' when curr_state = S3 else
 		'-' when curr_state = S4 else
 		'-' when curr_state = S5 else

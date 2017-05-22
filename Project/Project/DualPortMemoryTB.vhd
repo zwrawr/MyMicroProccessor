@@ -76,10 +76,13 @@ BEGIN
 	  
 	  wait for clk_period;
 	  
-	  assert std_match(I_out, X"00000100")
-	  report lf &"BROKED"
+	  assert std_match(I_out, X"00000001")
+	  report lf &"Broken"
 	  severity error;
 	  
+	  assert not std_match(I_out, X"00000001")
+	  report lf &"Works"
+	  severity note;
 	  
 	  wait for clk_period;
 	  
@@ -92,6 +95,10 @@ BEGIN
 	  assert std_match(D_out, "00011000110011001100110101011110")
 	  report lf & "BROKED"
 	  severity error;
+	  
+	  assert not std_match(D_out, "00011000110011001100110101011110")
+	  report lf & "Works"
+	  severity note;
 	  
       wait;
    end process;

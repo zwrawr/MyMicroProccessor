@@ -1,0 +1,25 @@
+ISim P.28xd (signature 0xa0883be4)
+This is a Full version of ISim.
+
+# run 1000 ns 
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+at 155 ns: Note: 
+ [ OK ] Test 0 was successful!
+ (/sequencertb/).
+at 205 ns: Note: 
+ [ OK ] Test 1 was successful!
+ (/sequencertb/).
+at 255 ns: Note: 
+ [ OK ] Test 2 was successful!
+ (/sequencertb/).
+at 305 ns: Note: 
+ [ OK ] Test 3 was successful!
+ (/sequencertb/).
+at 355 ns: Note: 
+ [ OK ] Test 4 was successful!
+ (/sequencertb/).
+at 355 ns: Note: 
+ [ OK ] Test 4 was successful!
+ (/sequencertb/).
+ISim>  
